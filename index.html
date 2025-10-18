@@ -3,6 +3,18 @@
  <HEAD>
   <TITLE> New Document </TITLE>
   <style>
+      .sound-guide {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    z-index: 20; /* Trên cả chữ và trái tim */
+    color: #FF3860;
+    font-size: 0.8em;
+    font-weight: bold;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 5px 10px;
+    border-radius: 5px;
+    }
     /* 1. HIỆU ỨNG SLIDESHOW ẢNH */
     html, body {
         height: 100%;
@@ -77,7 +89,45 @@
  </HEAD>
 
  <BODY>
-     
+     <div class="sound-guide">
+        (Click bất kỳ đâu trên màn hình để bật âm thanh 🎧)
+    </div>
+    <div id="message-container">
+    ```
+
+Sau đó, bạn cần thêm một chút JavaScript để khi người dùng click, âm thanh sẽ được bật:
+
+### JavaScript Bật/Tắt Tiếng
+
+Bạn cần thêm một đoạn code để tìm thẻ `<iframe>` và hủy tắt tiếng khi người dùng tương tác.
+
+**Thay thế dòng code `setTimeout` cuối cùng của bạn bằng đoạn dưới đây:**
+
+```javascript
+    // delay rendering bootstrap
+    setTimeout(function() {
+        onResize();
+        render();
+        
+        // BẬT PHÁT VÀ TẮT TIẾNG (ĐÃ CÓ TRONG IFRAME, NHƯNG THÊM CƠ CHẾ BẬT TIẾNG KHI CLICK)
+        var iframe = document.querySelector('iframe');
+        var soundOn = false;
+
+        document.addEventListener('click', function() {
+            if (!soundOn) {
+                // Thay URL trong iframe để bỏ tham số mute=1
+                iframe.src = 'https://www.youtube.com/embed/LEUxrubc3Po?autoplay=1&loop=1&playlist=LEUxrubc3Po'; 
+                soundOn = true;
+                
+                // Tùy chọn: Ẩn thông báo hướng dẫn
+                var guide = document.querySelector('.sound-guide');
+                if (guide) {
+                    guide.style.display = 'none';
+                }
+            }
+        });
+    }, 10);
+})(document.getElementById('pinkboard'));
   <div id="message-container">
     <div class="falling-text" style="--delay: 0s;">Anh nhớ em rất nhiều! ❤️</div>
     <div class="falling-text" style="--delay: 0.5s;">Anh nhớ em rất nhiều! ❤️</div>
@@ -104,6 +154,15 @@
 
   <canvas id="pinkboard"></canvas>
   <div style="position: absolute; bottom: 0; left: 0; z-index: -1;">
+   <iframe 
+        width="1" 
+        height="1" 
+        src="https://www.youtube.com/embed/LEUxrubc3Po?autoplay=1&loop=1&playlist=LEUxrubc3Po&mute=1" 
+        frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+        allowfullscreen
+    ></iframe>
+
     <script>
     /*
     * Settings
@@ -378,3 +437,4 @@
 </HTML>
 
 
+sau khi chỉnh sửa bạn xem có sai ở đâu và code có bị lệch dòng hay không
