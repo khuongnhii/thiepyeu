@@ -1,158 +1,522 @@
-<!doctype html>
-<html lang="vi">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Thiệp QR — Trang yêu thương</title>
+!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<HTML>
+
+ <HEAD>
+
+  <TITLE> New Document </TITLE>
+
+  <META NAME="Generator" CONTENT="EditPlus">
+
+  <META NAME="Author" CONTENT="">
+
+  <META NAME="Keywords" CONTENT="">
+
+  <META NAME="Description" CONTENT="">
+
   <style>
-    :root{--bg:#0f1226;--card:#ffffff;--accent:#ff6b9a}
-    html,body{height:100%;margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,'Helvetica Neue',Arial}
-    body{background:linear-gradient(180deg,#0b0d17 0%, #161824 60%);color:#fff;overflow-x:hidden}
 
-    /* falling hearts */
-    .hearts{position:fixed;left:0;top:0;right:0;bottom:0;pointer-events:none;z-index:5;overflow:hidden}
-    .heart{position:absolute;width:28px;height:28px;transform:translateY(-140vh);opacity:0.85}
-    .heart:before,.heart:after{content:'';position:absolute;width:20px;height:32px;background:var(--accent);border-radius:20px 20px 0 0;transform:rotate(-45deg);left:6px}
-    .heart:after{transform:rotate(45deg);left:-6px}
+  html, body {
 
-    /* layout card */
-    .container{max-width:980px;margin:40px auto;padding:28px;border-radius:14px;background:linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.02));box-shadow:0 8px 30px rgba(0,0,0,0.6);position:relative;z-index:10}
-    header{display:flex;align-items:center;gap:16px}
-    .logo{width:64px;height:64px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#ffb3c8);display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff}
-    h1{margin:0;font-size:1.6rem}
-    p.lead{margin:6px 0 18px;color:#ddd}
+  height: 100%;
 
-    /* message / typing */
-    .message-box{background:rgba(255,255,255,0.03);padding:18px;border-radius:12px;margin-bottom:18px}
-    .typed{font-size:1.05rem;line-height:1.5;min-height:48px}
+  padding: 0;
 
-    /* gallery */
-    .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px}
-    .card{background:rgba(255,255,255,0.03);border-radius:10px;overflow:hidden;cursor:pointer;display:flex;align-items:center;justify-content:center;min-height:110px}
-    .card img{width:100%;height:100%;object-fit:cover;display:block}
+  margin: 0;
 
-    /* lightbox */
-    .lightbox{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.75);z-index:40}
-    .lightbox.open{display:flex}
-    .lightbox img{max-width:92%;max-height:82%;border-radius:10px;box-shadow:0 10px 50px rgba(0,0,0,0.8)}
+  background: #000;
 
-    /* controls */
-    .controls{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
-    button{background:transparent;border:1px solid rgba(255,255,255,0.12);color:#fff;padding:8px 12px;border-radius:8px;cursor:pointer}
+}
 
-    footer{margin-top:18px;color:#bbb;font-size:0.9rem}
+canvas {
 
-    /* responsive tweaks */
-    @media (max-width:520px){.container{margin:18px;padding:18px}}
+  position: absolute;
+
+  width: 100%;
+
+  height: 100%;
+
+}
+
   </style>
-</head>
-<body>
-  <div class="hearts" aria-hidden="true"></div>
 
-  <main class="container">
-    <header>
-      <div class="logo">❤</div>
-      <div>
-        <h1>Quà Tặng Em Yêu Nhân Ngày 20-11</h1>
-        
-      </div>
-    </header>
+ </HEAD>
 
-    <section class="message-box">
-      <div class="typed" id="typed"></div>
-      <div class="controls">
-        <button id="replayTyping">▶️ Gặp lại lời nhắn</button>
-        <button id="toggleMusic">🔈 Nhạc: Tắt</button>
-      </div>
-    </section>
 
-    <section>
-      <h3 style="margin-top:0">Bộ ảnh</h3>
-      <div class="gallery" id="gallery"></div>
-    </section>
+ <BODY>
 
-    <footer>
-      <div>Thay nội dung: mở file HTML này, chỉnh mảng `MESSAGES` và `IMAGES` trong phần &lt;script&gt;.</div>
-      <div style="margin-top:6px">Muốn mình giúp tùy chỉnh ảnh/lời nhắn, nói mình biết nhé 😊</div>
-    </footer>
-  </main>
-
-  <div class="lightbox" id="lightbox" role="dialog" aria-hidden="true">
-    <img id="lightboxImg" alt="" />
-  </div>
-
-  <audio id="bgm" loop crossorigin="anonymous">
-    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_3294c6f3ac.mp3?filename=gentle-piano-110138.mp3" type="audio/mpeg">
-  </audio>
+  <canvas id="pinkboard"></canvas>
 
   <script>
-    /* ========== CONFIG: chỉnh ở đây ========== */
-    const MESSAGES = [
-      "Anh nhớ em — mãi là người đặc biệt.",
-      "20-10 chúc chị đại luôn xinh đẹp và hạnh phúc! ",
-      "Một ngày, một nụ cười, một kỷ niệm mới ❤"
-    ];
 
-    const IMAGES = [
-      'https://duonglinkdaydu.com/cua/hinh1.jpeg',
-      'https://duonglinkdaydu.com/cua/hinh2.jpeg',
-      'https://picsum.photos/seed/3/800/600',
-      'https://picsum.photos/seed/4/800/600'
-    ];
+  /*
 
-    const HEART_COUNT = 12; // số trái tim rơi
-    const HEART_COLOR = '#ff6b9a';
-    /* ========== END CONFIG ========== */
+ * Settings
 
-    // render gallery
-    const gallery = document.getElementById('gallery');
-    IMAGES.forEach((src,i)=>{
-      const el = document.createElement('div'); el.className='card';
-      const img = document.createElement('img'); img.src=src; img.alt=`Hình ${i+1}`;
-      el.appendChild(img);
-      el.addEventListener('click',()=>openLightbox(src));
-      gallery.appendChild(el);
-    });
+ */
 
-    // lightbox
-    const lightbox = document.getElementById('lightbox');
-    const lbImg = document.getElementById('lightboxImg');
-    function openLightbox(src){ lbImg.src = src; lightbox.classList.add('open'); lightbox.setAttribute('aria-hidden','false'); }
-    lightbox.addEventListener('click',()=>{ lightbox.classList.remove('open'); lightbox.setAttribute('aria-hidden','true'); lbImg.src=''; });
+var settings = {
 
-    // typing effect
-    const typedEl = document.getElementById('typed');
-    let typingIndex=0;
-    function typeAll(){ typedEl.textContent = ''; typeMessage(MESSAGES[typingIndex],()=>{ typingIndex=(typingIndex+1)%MESSAGES.length; }); }
-    function typeMessage(text,cb){
-      let i=0; typedEl.textContent='';
-      const t = setInterval(()=>{ typedEl.textContent += text[i++]||''; if(i>text.length){ clearInterval(t); setTimeout(cb,900); } }, 36);
+  particles: {
+
+    length:   500, // maximum amount of particles
+
+    duration:   2, // particle duration in sec
+
+    velocity: 100, // particle velocity in pixels/sec
+
+    effect: -0.75, // play with this for a nice effect
+
+    size:      30, // particle size in pixels
+
+  },
+
+};
+
+
+/*
+
+ * RequestAnimationFrame polyfill by Erik Möller
+
+ */
+
+(function(){var b=0;var c=["ms","moz","webkit","o"];for(var a=0;a<c.length&&!window.requestAnimationFrame;++a){window.requestAnimationFrame=window[c[a]+"RequestAnimationFrame"];window.cancelAnimationFrame=window[c[a]+"CancelAnimationFrame"]||window[c[a]+"CancelRequestAnimationFrame"]}if(!window.requestAnimationFrame){window.requestAnimationFrame=function(h,e){var d=new Date().getTime();var f=Math.max(0,16-(d-b));var g=window.setTimeout(function(){h(d+f)},f);b=d+f;return g}}if(!window.cancelAnimationFrame){window.cancelAnimationFrame=function(d){clearTimeout(d)}}}());
+
+
+/*
+
+ * Point class
+
+ */
+
+var Point = (function() {
+
+  function Point(x, y) {
+
+    this.x = (typeof x !== 'undefined') ? x : 0;
+
+    this.y = (typeof y !== 'undefined') ? y : 0;
+
+  }
+
+  Point.prototype.clone = function() {
+
+    return new Point(this.x, this.y);
+
+  };
+
+  Point.prototype.length = function(length) {
+
+    if (typeof length == 'undefined')
+
+      return Math.sqrt(this.x * this.x + this.y * this.y);
+
+    this.normalize();
+
+    this.x *= length;
+
+    this.y *= length;
+
+    return this;
+
+  };
+
+  Point.prototype.normalize = function() {
+
+    var length = this.length();
+
+    this.x /= length;
+
+    this.y /= length;
+
+    return this;
+
+  };
+
+  return Point;
+
+})();
+
+
+/*
+
+ * Particle class
+
+ */
+
+var Particle = (function() {
+
+  function Particle() {
+
+    this.position = new Point();
+
+    this.velocity = new Point();
+
+    this.acceleration = new Point();
+
+    this.age = 0;
+
+  }
+
+  Particle.prototype.initialize = function(x, y, dx, dy) {
+
+    this.position.x = x;
+
+    this.position.y = y;
+
+    this.velocity.x = dx;
+
+    this.velocity.y = dy;
+
+    this.acceleration.x = dx * settings.particles.effect;
+
+    this.acceleration.y = dy * settings.particles.effect;
+
+    this.age = 0;
+
+  };
+
+  Particle.prototype.update = function(deltaTime) {
+
+    this.position.x += this.velocity.x * deltaTime;
+
+    this.position.y += this.velocity.y * deltaTime;
+
+    this.velocity.x += this.acceleration.x * deltaTime;
+
+    this.velocity.y += this.acceleration.y * deltaTime;
+
+    this.age += deltaTime;
+
+  };
+
+  Particle.prototype.draw = function(context, image) {
+
+    function ease(t) {
+
+      return (--t) * t * t + 1;
+
     }
-    document.getElementById('replayTyping').addEventListener('click',()=>{ typeAll(); });
-    // initial
-    setTimeout(typeAll,600);
 
-    // music control
-    const bgm = document.getElementById('bgm');
-    const toggleBtn = document.getElementById('toggleMusic');
-    let musicOn = false; bgm.volume = 0.28;
-    toggleBtn.addEventListener('click',()=>{
-      if(!musicOn){ bgm.play(); toggleBtn.textContent='🔊 Nhạc: Bật'; musicOn=true; }
-      else{ bgm.pause(); toggleBtn.textContent='🔈 Nhạc: Tắt'; musicOn=false; }
-    });
+    var size = image.width * ease(this.age / settings.particles.duration);
 
-    // falling hearts generator
-    const heartsWrap = document.querySelector('.hearts');
-    for(let i=0;i<HEART_COUNT;i++){ const h = document.createElement('div'); h.className='heart'; h.style.left = (Math.random()*100)+'%'; h.style.width = `${18+Math.random()*26}px`; h.style.height = h.style.width; h.style.opacity = 0.6+Math.random()*0.5; h.style.setProperty('--delay', Math.random()*3+'s'); heartsWrap.appendChild(h);
-      const dur = 6+Math.random()*6; h.animate([{transform:'translateY(-30vh) rotate(0deg)',opacity:1,offset:0},{transform:`translateY(${120+Math.random()*60}vh) rotate(${Math.random()*400-200}deg)`,opacity:0.1,offset:1}],{duration: dur*1000,iterations:Infinity,delay:Math.random()*-dur*1000});
-      // color tweak for pseudo elements via inline style (uses CSS variable)
-      h.style.setProperty('--accent', HEART_COLOR);
+    context.globalAlpha = 1 - this.age / settings.particles.duration;
+
+    context.drawImage(image, this.position.x - size / 2, this.position.y - size / 2, size, size);
+
+  };
+
+  return Particle;
+
+})();
+
+
+/*
+
+ * ParticlePool class
+
+ */
+
+var ParticlePool = (function() {
+
+  var particles,
+
+      firstActive = 0,
+
+      firstFree   = 0,
+
+      duration    = settings.particles.duration;
+
+ 
+
+  function ParticlePool(length) {
+
+    // create and populate particle pool
+
+    particles = new Array(length);
+
+    for (var i = 0; i < particles.length; i++)
+
+      particles[i] = new Particle();
+
+  }
+
+  ParticlePool.prototype.add = function(x, y, dx, dy) {
+
+    particles[firstFree].initialize(x, y, dx, dy);
+
+   
+
+    // handle circular queue
+
+    firstFree++;
+
+    if (firstFree   == particles.length) firstFree   = 0;
+
+    if (firstActive == firstFree       ) firstActive++;
+
+    if (firstActive == particles.length) firstActive = 0;
+
+  };
+
+  ParticlePool.prototype.update = function(deltaTime) {
+
+    var i;
+
+   
+
+    // update active particles
+
+    if (firstActive < firstFree) {
+
+      for (i = firstActive; i < firstFree; i++)
+
+        particles[i].update(deltaTime);
+
     }
 
-    // small helper: let user copy/edit config quickly (for non-dev users)
-    // The HTML comments near CONFIG explain where to change.
+    if (firstFree < firstActive) {
+
+      for (i = firstActive; i < particles.length; i++)
+
+        particles[i].update(deltaTime);
+
+      for (i = 0; i < firstFree; i++)
+
+        particles[i].update(deltaTime);
+
+    }
+
+   
+
+    // remove inactive particles
+
+    while (particles[firstActive].age >= duration && firstActive != firstFree) {
+
+      firstActive++;
+
+      if (firstActive == particles.length) firstActive = 0;
+
+    }
+
+   
+
+   
+
+  };
+
+  ParticlePool.prototype.draw = function(context, image) {
+
+    // draw active particles
+
+    if (firstActive < firstFree) {
+
+      for (i = firstActive; i < firstFree; i++)
+
+        particles[i].draw(context, image);
+
+    }
+
+    if (firstFree < firstActive) {
+
+      for (i = firstActive; i < particles.length; i++)
+
+        particles[i].draw(context, image);
+
+      for (i = 0; i < firstFree; i++)
+
+        particles[i].draw(context, image);
+
+    }
+
+  };
+
+  return ParticlePool;
+
+})();
+
+
+/*
+
+ * Putting it all together
+
+ */
+
+(function(canvas) {
+
+  var context = canvas.getContext('2d'),
+
+      particles = new ParticlePool(settings.particles.length),
+
+      particleRate = settings.particles.length / settings.particles.duration, // particles/sec
+
+      time;
+
+ 
+
+  // get point on heart with -PI <= t <= PI
+
+  function pointOnHeart(t) {
+
+    return new Point(
+
+      160 * Math.pow(Math.sin(t), 3),
+
+      130 * Math.cos(t) - 50 * Math.cos(2 * t) - 20 * Math.cos(3 * t) - 10 * Math.cos(4 * t) + 25
+
+    );
+
+  }
+
+ 
+
+  // creating the particle image using a dummy canvas
+
+  var image = (function() {
+
+    var canvas  = document.createElement('canvas'),
+
+        context = canvas.getContext('2d');
+
+    canvas.width  = settings.particles.size;
+
+    canvas.height = settings.particles.size;
+
+    // helper function to create the path
+
+    function to(t) {
+
+      var point = pointOnHeart(t);
+
+      point.x = settings.particles.size / 2 + point.x * settings.particles.size / 350;
+
+      point.y = settings.particles.size / 2 - point.y * settings.particles.size / 350;
+
+      return point;
+
+    }
+
+    // create the path
+
+    context.beginPath();
+
+    var t = -Math.PI;
+
+    var point = to(t);
+
+    context.moveTo(point.x, point.y);
+
+    while (t < Math.PI) {
+
+      t += 0.01; // baby steps!
+
+      point = to(t);
+
+      context.lineTo(point.x, point.y);
+
+    }
+
+    context.closePath();
+
+    // create the fill
+
+    context.fillStyle = '#ea80b0';
+
+    context.fill();
+
+    // create the image
+
+    var image = new Image();
+
+    image.src = canvas.toDataURL();
+
+    return image;
+
+  })();
+
+ 
+
+  // render that thing!
+
+  function render() {
+
+    // next animation frame
+
+    requestAnimationFrame(render);
+
+   
+
+    // update time
+
+    var newTime   = new Date().getTime() / 1000,
+
+        deltaTime = newTime - (time || newTime);
+
+    time = newTime;
+
+   
+
+    // clear canvas
+
+    context.clearRect(0, 0, canvas.width, canvas.height);
+
+   
+
+    // create new particles
+
+    var amount = particleRate * deltaTime;
+
+    for (var i = 0; i < amount; i++) {
+
+      var pos = pointOnHeart(Math.PI - 2 * Math.PI * Math.random());
+
+      var dir = pos.clone().length(settings.particles.velocity);
+
+      particles.add(canvas.width / 2 + pos.x, canvas.height / 2 - pos.y, dir.x, -dir.y);
+
+    }
+
+   
+
+    // update and draw particles
+
+    particles.update(deltaTime);
+
+    particles.draw(context, image);
+
+  }
+
+ 
+
+  // handle (re-)sizing of the canvas
+
+  function onResize() {
+
+    canvas.width  = canvas.clientWidth;
+
+    canvas.height = canvas.clientHeight;
+
+  }
+
+  window.onresize = onResize;
+
+ 
+
+  // delay rendering bootstrap
+
+  setTimeout(function() {
+
+    onResize();
+
+    render();
+
+  }, 10);
+
+})(document.getElementById('pinkboard'));
+
   </script>
-</body>
-</html>
 
+ </BODY>
+
+</HTML>
 
