@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Thiệp QR — Trang yêu thương</title>
+  <style>
+    :root{--bg:#0f1226;--card:#ffffff;--accent:#ff6b9a}
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,'Helvetica Neue',Arial}
+    body{background:linear-gradient(180deg,#0b0d17 0%, #161824 60%);color:#fff;overflow-x:hidden}
+
+    /* falling hearts */
+    .hearts{position:fixed;left:0;top:0;right:0;bottom:0;pointer-events:none;z-index:5;overflow:hidden}
+    .heart{position:absolute;width:28px;height:28px;transform:translateY(-140vh);opacity:0.85}
+    .heart:before,.heart:after{content:'';position:absolute;width:20px;height:32px;background:var(--accent);border-radius:20px 20px 0 0;transform:rotate(-45deg);left:6px}
+    .heart:after{transform:rotate(45deg);left:-6px}
+
+    /* layout card */
+    .container{max-width:980px;margin:40px auto;padding:28px;border-radius:14px;background:linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.02));box-shadow:0 8px 30px rgba(0,0,0,0.6);position:relative;z-index:10}
+    header{display:flex;align-items:center;gap:16px}
+    .logo{width:64px;height:64px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#ffb3c8);display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff}
+    h1{margin:0;font-size:1.6rem}
+    p.lead{margin:6px 0 18px;color:#ddd}
+
+    /* message / typing */
+    .message-box{background:rgba(255,255,255,0.03);padding:18px;border-radius:12px;margin-bottom:18px}
+    .typed{font-size:1.05rem;line-height:1.5;min-height:48px}
+
+    /* gallery */
+    .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px}
+    .card{background:rgba(255,255,255,0.03);border-radius:10px;overflow:hidden;cursor:pointer;display:flex;align-items:center;justify-content:center;min-height:110px}
+    .card img{width:100%;height:100%;object-fit:cover;display:block}
+
+    /* lightbox */
+    .lightbox{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.75);z-index:40}
+    .lightbox.open{display:flex}
+    .lightbox img{max-width:92%;max-height:82%;border-radius:10px;box-shadow:0 10px 50px rgba(0,0,0,0.8)}
+
+    /* controls */
+    .controls{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+    button{background:transparent;border:1px solid rgba(255,255,255,0.12);color:#fff;padding:8px 12px;border-radius:8px;cursor:pointer}
+
+    footer{margin-top:18px;color:#bbb;font-size:0.9rem}
+
+    /* responsive tweaks */
+    @media (max-width:520px){.container{margin:18px;padding:18px}}
+  </style>
+</head>
+<body>
+  <div class="hearts" aria-hidden="true"></div>
+
+  <main class="container">
+    <header>
+      <div class="logo">❤</div>
+      <div>
+        <h1>Thiệp QR — Dành tặng người thương</h1>
+        <p class="lead">Quét mã QR để xem hình ảnh, lời nhắn và nghe một giai điệu nhỏ.</p>
+      </div>
+    </header>
+
+    <section class="message-box">
+      <div class="typed" id="typed"></div>
+      <div class="controls">
+        <button id="replayTyping">▶️ Gặp lại lời nhắn</button>
+        <button id="toggleMusic">🔈 Nhạc: Tắt</button>
+      </div>
+    </section>
+
+    <section>
+      <h3 style="margin-top:0">Bộ ảnh</h3>
+      <div class="gallery" id="gallery"></div>
+    </section>
+
+    <footer>
+      <div>Thay nội dung: mở file HTML này, chỉnh mảng `MESSAGES` và `IMAGES` trong phần &lt;script&gt;.</div>
+      <div style="margin-top:6px">Muốn mình giúp tùy chỉnh ảnh/lời nhắn, nói mình biết nhé 😊</div>
+    </footer>
+  </main>
+
+  <div class="lightbox" id="lightbox" role="dialog" aria-hidden="true">
+    <img id="lightboxImg" alt="" />
+  </div>
+
+  <audio id="bgm" loop crossorigin="anonymous">
+    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_3294c6f3ac.mp3?filename=gentle-piano-110138.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    /* ========== CONFIG: chỉnh ở đây ========== */
+    const MESSAGES = [
+      "Anh nhớ em — mãi là người đặc biệt.",
+      "20-10 chúc chị đại luôn xinh đẹp và hạnh phúc! ",
+      "Một ngày, một nụ cười, một kỷ niệm mới ❤"
+    ];
+
+    const IMAGES = [
+      'hinh1.jpeg',
+      'hinh2.jpeg',
+      'https://picsum.photos/seed/3/800/600',
+      'https://picsum.photos/seed/4/800/600'
+    ];
+
+    const HEART_COUNT = 12; // số trái tim rơi
+    const HEART_COLOR = '#ff6b9a';
+    /* ========== END CONFIG ========== */
+
+    // render gallery
+    const gallery = document.getElementById('gallery');
+    IMAGES.forEach((src,i)=>{
+      const el = document.createElement('div'); el.className='card';
+      const img = document.createElement('img'); img.src=src; img.alt=`Hình ${i+1}`;
+      el.appendChild(img);
+      el.addEventListener('click',()=>openLightbox(src));
+      gallery.appendChild(el);
+    });
+
+    // lightbox
+    const lightbox = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lightboxImg');
+    function openLightbox(src){ lbImg.src = src; lightbox.classList.add('open'); lightbox.setAttribute('aria-hidden','false'); }
+    lightbox.addEventListener('click',()=>{ lightbox.classList.remove('open'); lightbox.setAttribute('aria-hidden','true'); lbImg.src=''; });
+
+    // typing effect
+    const typedEl = document.getElementById('typed');
+    let typingIndex=0;
+    function typeAll(){ typedEl.textContent = ''; typeMessage(MESSAGES[typingIndex],()=>{ typingIndex=(typingIndex+1)%MESSAGES.length; }); }
+    function typeMessage(text,cb){
+      let i=0; typedEl.textContent='';
+      const t = setInterval(()=>{ typedEl.textContent += text[i++]||''; if(i>text.length){ clearInterval(t); setTimeout(cb,900); } }, 36);
+    }
+    document.getElementById('replayTyping').addEventListener('click',()=>{ typeAll(); });
+    // initial
+    setTimeout(typeAll,600);
+
+    // music control
+    const bgm = document.getElementById('bgm');
+    const toggleBtn = document.getElementById('toggleMusic');
+    let musicOn = false; bgm.volume = 0.28;
+    toggleBtn.addEventListener('click',()=>{
+      if(!musicOn){ bgm.play(); toggleBtn.textContent='🔊 Nhạc: Bật'; musicOn=true; }
+      else{ bgm.pause(); toggleBtn.textContent='🔈 Nhạc: Tắt'; musicOn=false; }
+    });
+
+    // falling hearts generator
+    const heartsWrap = document.querySelector('.hearts');
+    for(let i=0;i<HEART_COUNT;i++){ const h = document.createElement('div'); h.className='heart'; h.style.left = (Math.random()*100)+'%'; h.style.width = `${18+Math.random()*26}px`; h.style.height = h.style.width; h.style.opacity = 0.6+Math.random()*0.5; h.style.setProperty('--delay', Math.random()*3+'s'); heartsWrap.appendChild(h);
+      const dur = 6+Math.random()*6; h.animate([{transform:'translateY(-30vh) rotate(0deg)',opacity:1,offset:0},{transform:`translateY(${120+Math.random()*60}vh) rotate(${Math.random()*400-200}deg)`,opacity:0.1,offset:1}],{duration: dur*1000,iterations:Infinity,delay:Math.random()*-dur*1000});
+      // color tweak for pseudo elements via inline style (uses CSS variable)
+      h.style.setProperty('--accent', HEART_COLOR);
+    }
+
+    // small helper: let user copy/edit config quickly (for non-dev users)
+    // The HTML comments near CONFIG explain where to change.
+  </script>
+</body>
+</html>
