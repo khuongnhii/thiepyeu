@@ -8,8 +8,9 @@
         height: 100%;
         padding: 0;
         margin: 0;
-        /* TẠM THỜI XÓA background-color: #000; để kiểm tra ảnh */
+        background-color: #000; /* Vẫn giữ nền đen */
         
+        /* Cấu hình hiệu ứng slideshow ảnh */
         animation: background-slideshow 24s infinite;
         background-size: cover;
         background-position: center;
@@ -27,7 +28,7 @@
     }
     
     /* 2. HIỆU ỨNG CHỮ RƠI */
-    #message-container {
+   #message-container {
         position: absolute;
         top: 0;
         left: 0;
@@ -62,6 +63,14 @@
         100% { transform: translateY(100vh); opacity: 0; }
     }
 
+    /* KHẮC PHỤC LỖI: Đảm bảo Canvas không có nền đen và tránh trùng lặp */
+    canvas {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: transparent; /* ĐÂY LÀ PHẦN SỬA LỖI */
+    }
+
     /* 3. KHẮC PHỤC CANVAS */
     canvas {
         position: absolute;
@@ -75,21 +84,28 @@
 
  <BODY>
   <div id="message-container">
-        <div class="falling-text" style="--delay: 0s;">Anh nhớ em rất nhiều! ❤️</div>
-    <div class="falling-text" style="--delay: 8s;">Anh nhớ em rất nhiều! ❤️</div>
-    <div class="falling-text" style="--delay: 16s;">Anh nhớ em rất nhiều! ❤️</div>
-    <div class="falling-text" style="--delay: 24s;">Anh nhớ em rất nhiều! ❤️</div>
-    
-        <div class="falling-text" style="--delay: 2s;">Chúc em một ngày lễ 20-10 đầy ý nghĩa và nhiều niềm vuii!!</div>
-    <div class="falling-text" style="--delay: 10s;">Chúc em một ngày lễ 20-10 đầy ý nghĩa và nhiều niềm vuii!!</div>
-    <div class="falling-text" style="--delay: 18s;">Chúc em một ngày lễ 20-10 đầy ý nghĩa và nhiều niềm vuii!!</div>
-    <div class="falling-text" style="--delay: 26s;">Chúc em một ngày lễ 20-10 đầy ý nghĩa và nhiều niềm vuii!!</div>
+    <div class="falling-text" style="--delay: 0s;">Anh nhớ em rất nhiều! ❤️</div>
+    <div class="falling-text" style="--delay: 0.5s;">Anh nhớ em rất nhiều! ❤️</div>
+    <div class="falling-text" style="--delay: 1s;">Anh nhớ em rất nhiều! ❤️</div>
+    <div class="falling-text" style="--delay: 1.5s;">Anh nhớ em rất nhiều! ❤️</div>
+    
+    <div class="falling-text" style="--delay: 8s;">Anh nhớ em rất nhiều! ❤️</div>
+    <div class="falling-text" style="--delay: 8.5s;">Anh nhớ em rất nhiều! ❤️</div>
+    <div class="falling-text" style="--delay: 9s;">Anh nhớ em rất nhiều! ❤️</div>
+    <div class="falling-text" style="--delay: 9.5s;">Anh nhớ em rất nhiều! ❤️</div>
+    <div class="falling-text" style="--delay: 16s;">Anh nhớ em rất nhiều! ❤️</div>
+    <div class="falling-text" style="--delay: 16.5s;">Anh nhớ em rất nhiều! ❤️</div>
+    <div class="falling-text" style="--delay: 17s;">Anh nhớ em rất nhiều! ❤️</div>
+    <div class="falling-text" style="--delay: 17.5s;">Anh nhớ em rất nhiều! ❤️</div>
 
-        <div class="falling-text" style="--delay: 4s;">Cảm ơn vì tất cả.</div>
-    <div class="falling-text" style="--delay: 12s;">Cảm ơn vì tất cả.</div>
-    <div class="falling-text" style="--delay: 20s;">Cảm ơn vì tất cả.</div>
-    <div class="falling-text" style="--delay: 28s;">Cảm ơn vì tất cả.</div>
-  </div>
+    <div class="falling-text" style="--delay: 3s;">Chúc em một ngày lễ 20-10 đầy ý nghĩa và nhiều niềm vuii!!</div>
+    <div class="falling-text" style="--delay: 11s;">Chúc em một ngày lễ 20-10 đầy ý nghĩa và nhiều niềm vuii!!</div>
+    <div class="falling-text" style="--delay: 19s;">Chúc em một ngày lễ 20-10 đầy ý nghĩa và nhiều niềm vuii!!</div>
+
+    <div class="falling-text" style="--delay: 5s;">Cảm ơn vì tất cả.</div>
+    <div class="falling-text" style="--delay: 13s;">Cảm ơn vì tất cả.</div>
+    <div class="falling-text" style="--delay: 21s;">Cảm ơn vì tất cả.</div>
+  </div>
 
   <canvas id="pinkboard"></canvas>
 
@@ -339,3 +355,4 @@
  </BODY>
 
 </HTML>
+
