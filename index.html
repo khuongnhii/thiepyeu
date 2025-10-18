@@ -3,32 +3,21 @@
  <HEAD>
   <TITLE> New Document </TITLE>
   <style>
-    /* CSS MỚI: Hướng dẫn âm thanh */
-    .sound-guide {
-        position: fixed;
-        bottom: 10px;
-        right: 10px;
-        z-index: 20; /* Trên cả chữ và trái tim */
-        color: #FF3860;
-        font-size: 0.8em;
-        font-weight: bold;
-        background: rgba(0, 0, 0, 0.5);
-        padding: 5px 10px;
-        border-radius: 5px;
-    }
-    
     /* 1. HIỆU ỨNG SLIDESHOW ẢNH */
     html, body {
         height: 100%;
         padding: 0;
         margin: 0;
-        background-color: #000;
+        background-color: #000; /* Vẫn giữ nền đen */
+        
+        /* Cấu hình hiệu ứng slideshow ảnh */
         animation: background-slideshow 24s infinite;
         background-size: cover;
         background-position: center;
     }
 
     @keyframes background-slideshow {
+        /* BẠN CẦN CHỈNH LẠI CÁC URL NÀY ĐẾN KHO LƯU TRỮ CHÍNH XÁC */
         0% { background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/IMG_4532.jpeg'); } 
         25% { background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/IMG_4532.jpeg'); }
         30% { background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.9XQ-uD4t5vTSFlZPuiEHzCguDWB4x-2EuUOJ16GHzts.jpeg'); } 
@@ -62,7 +51,7 @@
         color: #fff;
         text-shadow: 0 0 10px rgba(255, 107, 154, 0.8);
         
-        animation: fall 24s linear infinite;
+        animation: fall 24s linear infinite; /* Rơi chậm 24s */
         animation-delay: var(--delay);
         opacity: 0; 
     }
@@ -74,60 +63,46 @@
         100% { transform: translateY(100vh); opacity: 0; }
     }
 
-    /* KHẮC PHỤC LỖI CANVAS */
+    /* KHẮC PHỤC LỖI: Đảm bảo Canvas không có nền đen và tránh trùng lặp */
     canvas {
         position: absolute;
         width: 100%;
         height: 100%;
-        background-color: transparent;
+        background-color: transparent; /* ĐÂY LÀ PHẦN SỬA LỖI */
     }
 
   </style>
  </HEAD>
 
  <BODY>
-    
-        <div class="sound-guide">
-        (Click bất kỳ đâu trên màn hình để bật âm thanh 🎧)
-    </div>
-    
-        <div id="message-container">
-        <div class="falling-text" style="--delay: 0s;">Anh nhớ em rất nhiều! ❤️</div>
-        <div class="falling-text" style="--delay: 0.5s;">Anh nhớ em rất nhiều! ❤️</div>
-        <div class="falling-text" style="--delay: 1s;">Anh nhớ em rất nhiều! ❤️</div>
-        <div class="falling-text" style="--delay: 1.5s;">Anh nhớ em rất nhiều! ❤️</div>
-        
-        <div class="falling-text" style="--delay: 8s;">Anh nhớ em rất nhiều! ❤️</div>
-        <div class="falling-text" style="--delay: 8.5s;">Anh nhớ em rất nhiều! ❤️</div>
-        <div class="falling-text" style="--delay: 9s;">Anh nhớ em rất nhiều! ❤️</div>
-        <div class="falling-text" style="--delay: 9.5s;">Anh nhớ em rất nhiều! ❤️</div>
-        <div class="falling-text" style="--delay: 16s;">Anh nhớ em rất nhiều! ❤️</div>
-        <div class="falling-text" style="--delay: 16.5s;">Anh nhớ em rất nhiều! ❤️</div>
-        <div class="falling-text" style="--delay: 17s;">Anh nhớ em rất nhiều! ❤️</div>
-        <div class="falling-text" style="--delay: 17.5s;">Anh nhớ em rất nhiều! ❤️</div>
+  <div id="message-container">
+    <div class="falling-text" style="--delay: 0s;">Anh nhớ em rất nhiều! ❤️</div>
+    <div class="falling-text" style="--delay: 0.5s;">Anh nhớ em rất nhiều! ❤️</div>
+    <div class="falling-text" style="--delay: 1s;">Anh nhớ em rất nhiều! ❤️</div>
+    <div class="falling-text" style="--delay: 1.5s;">Anh nhớ em rất nhiều! ❤️</div>
+    
+    <div class="falling-text" style="--delay: 8s;">Anh nhớ em rất nhiều! ❤️</div>
+    <div class="falling-text" style="--delay: 8.5s;">Anh nhớ em rất nhiều! ❤️</div>
+    <div class="falling-text" style="--delay: 9s;">Anh nhớ em rất nhiều! ❤️</div>
+    <div class="falling-text" style="--delay: 9.5s;">Anh nhớ em rất nhiều! ❤️</div>
+    <div class="falling-text" style="--delay: 16s;">Anh nhớ em rất nhiều! ❤️</div>
+    <div class="falling-text" style="--delay: 16.5s;">Anh nhớ em rất nhiều! ❤️</div>
+    <div class="falling-text" style="--delay: 17s;">Anh nhớ em rất nhiều! ❤️</div>
+    <div class="falling-text" style="--delay: 17.5s;">Anh nhớ em rất nhiều! ❤️</div>
 
-        <div class="falling-text" style="--delay: 3s;">Chúc em một ngày lễ 20-10 đầy ý nghĩa và nhiều niềm vuii!!</div>
-        <div class="falling-text" style="--delay: 11s;">Chúc em một ngày lễ 20-10 đầy ý nghĩa và nhiều niềm vuii!!</div>
-        <div class="falling-text" style="--delay: 19s;">Chúc em một ngày lễ 20-10 đầy ý nghĩa và nhiều niềm vuii!!</div>
+    <div class="falling-text" style="--delay: 3s;">Chúc em một ngày lễ 20-10 đầy ý nghĩa và nhiều niềm vuii!!</div>
+    <div class="falling-text" style="--delay: 11s;">Chúc em một ngày lễ 20-10 đầy ý nghĩa và nhiều niềm vuii!!</div>
+    <div class="falling-text" style="--delay: 19s;">Chúc em một ngày lễ 20-10 đầy ý nghĩa và nhiều niềm vuii!!</div>
 
-        <div class="falling-text" style="--delay: 5s;">Cảm ơn vì tất cả.</div>
-        <div class="falling-text" style="--delay: 13s;">Cảm ơn vì tất cả.</div>
-        <div class="falling-text" style="--delay: 21s;">Cảm ơn vì tất cả.</div>
-    </div>
+    <div class="falling-text" style="--delay: 5s;">Cảm ơn vì tất cả.</div>
+    <div class="falling-text" style="--delay: 13s;">Cảm ơn vì tất cả.</div>
+    <div class="falling-text" style="--delay: 21s;">Cảm ơn vì tất cả.</div>
+  </div>
 
-        <canvas id="pinkboard"></canvas>
-    
-        <div style="position: absolute; bottom: 0; left: 0; z-index: -1;">
-        <iframe 
-            width="1" 
-            height="1" 
-            **src="https://www.youtube.com/embed/LEUxrubc3Po?autoplay=1&loop=1&playlist=LEUxrubc3Po&mute=1"** 
-            frameborder="0" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-            allowfullscreen
-        ></iframe>
-    </div>
-
+  <canvas id="pinkboard"></canvas>
+  <div style="position: absolute; bottom: 0; left: 0; z-index: -1;">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/LEUxrubc3Po?si=SZ29f5aapMI8qNZK&amp;clip=UgkxeOHKbZDZ_Rf-6qRSLSWjmVU63ZhH-k2X&amp;clipt=EJLIAxi7vAY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  
 
     <script>
     /*
@@ -142,7 +117,8 @@
             size: 30, // particle size in pixels
         },
     };
-    
+    // ... [GIỮ NGUYÊN TẤT CẢ CÁC ĐOẠN CODE JAVASCRIPT CÒN LẠI] ...
+    
     /*
     * RequestAnimationFrame polyfill by Erik Möller
     */
@@ -171,7 +147,6 @@
         Point.prototype.normalize = function() {
             var length = this.length();
             this.x /= length;
-            this.y /= length;
             this.y /= length;
             return this;
         };
@@ -386,23 +361,14 @@
         onResize();
         render();
         
-        // BẬT PHÁT VÀ TẮT TIẾNG KHI CLICK
-        var iframe = document.querySelector('iframe');
-        var soundOn = false;
-
-        document.addEventListener('click', function() {
-            if (!soundOn) {
-                // Thay URL trong iframe để BỎ tham số mute=1, giúp bật âm thanh.
-                iframe.src = 'https://www.youtube.com/embed/LEUxrubc3Po?autoplay=1&loop=1&playlist=LEUxrubc3Po'; 
-                soundOn = true;
-                
-                // Ẩn thông báo hướng dẫn
-                var guide = document.querySelector('.sound-guide');
-                if (guide) {
-                    guide.style.display = 'none';
-                }
-            }
-        });
+        // BẮT ĐẦU PHÁT NHẠC
+        var audio = document.getElementById('background-music');
+        if (audio) {
+             // Cần tương tác người dùng để tự động phát trên nhiều trình duyệt. 
+             // Dòng này cố gắng tự động phát.
+             audio.play().catch(e => console.log("Tự động phát nhạc thất bại. Cần người dùng tương tác."));
+        }
+        
     }, 10);
 })(document.getElementById('pinkboard'));
   </script>
@@ -410,3 +376,5 @@
  </BODY>
 
 </HTML>
+
+minh có gép phần nhạc nhưng không nghe thấy gì
