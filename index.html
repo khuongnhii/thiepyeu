@@ -72,9 +72,9 @@
   text-shadow: 0 0 10px rgba(255, 107, 154, 0.8); /* Bóng chữ hồng lãng mạn */
   
   /* Bắt đầu hiệu ứng rơi */
-  animation: fall 6s ease-in forwards;
+  animation: fall 18s ease-in infinite; /* Chạy vô hạn, chu kỳ 18 giây */
   animation-delay: var(--delay);
-  opacity: 0; /* Ẩn ban đầu */
+  opacity: 0;
 }
 
 @keyframes fall {
@@ -82,15 +82,16 @@
     transform: translateY(-50px); /* Bắt đầu từ phía trên */
     opacity: 0;
   }
-  15% {
+  5% {
     opacity: 1; /* Hiển thị nhanh chóng */
   }
-  85% {
+  95% {
+    transform: translateY(100vh); /* Rơi xuống hết màn hình (100vh) */
     opacity: 1; /* Giữ nguyên độ mờ */
   }
   100% {
-    transform: translateY(200px); /* Rơi xuống 200px (hoặc tùy chỉnh) */
-    opacity: 0; /* Tan biến dần */
+    transform: translateY(100vh); /* Kết thúc ở cuối màn hình */
+    opacity: 0; /* Tan biến dần và lặp lại */
   }
 }
 
@@ -112,8 +113,16 @@ canvas {
  <BODY>
   <div id="message-container">
     <div class="falling-text" style="--delay: 0s;">Anh nhớ em rất nhiều! ❤️</div>
+    <div class="falling-text" style="--delay: 6s;">Anh nhớ em rất nhiều! ❤️</div>
+    <div class="falling-text" style="--delay: 12s;">Anh nhớ em rất nhiều! ❤️</div>
+    
     <div class="falling-text" style="--delay: 1.5s;">Chúc em một ngày lễ 20-10 đầy ý nghĩa và nhiều niềm vuii!!</div>
+    <div class="falling-text" style="--delay: 7.5s;">Chúc em một ngày lễ 20-10 đầy ý nghĩa và nhiều niềm vuii!!</div>
+    <div class="falling-text" style="--delay: 13.5s;">Chúc em một ngày lễ 20-10 đầy ý nghĩa và nhiều niềm vuii!!</div>
+
     <div class="falling-text" style="--delay: 3s;">Cảm ơn vì tất cả.</div>
+    <div class="falling-text" style="--delay: 9s;">Cảm ơn vì tất cả.</div>
+    <div class="falling-text" style="--delay: 15s;">Cảm ơn vì tất cả.</div>
   </div>
 
   <canvas id="pinkboard"></canvas>
@@ -590,6 +599,7 @@ var ParticlePool = (function() {
  </BODY>
 
 </HTML>
+
 
 
 
