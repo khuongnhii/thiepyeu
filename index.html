@@ -16,17 +16,43 @@
 
   <style>
 
-  html, body {
-
+ html, body {
   height: 100%;
-
   padding: 0;
-
   margin: 0;
-
-  background: #000;
-
+  background-color: #000; /* Vẫn giữ nền đen */
+  
+  /* Cấu hình hiệu ứng slideshow ảnh */
+  animation: background-slideshow 24s infinite; /* TỔNG THỜI GIAN: 24 giây, LẶP LẠI: Vô hạn */
+  background-size: cover;
+  background-position: center;
 }
+
+/* Định nghĩa các bước chuyển đổi ảnh */
+@keyframes background-slideshow {
+  0% {
+    background-image: url('URL_ANH_CONG_KHAI_THU_1'); /* Bắt đầu với Ảnh 1 */
+  }
+  25% {
+    background-image: url('URL_ANH_CONG_KHAI_THU_1');
+  }
+  30% {
+    background-image: url('URL_ANH_CONG_KHAI_THU_2'); /* Chuyển sang Ảnh 2 */
+  }
+  55% {
+    background-image: url('URL_ANH_CONG_KHAI_THU_2');
+  }
+  60% {
+    background-image: url('URL_ANH_CONG_KHAI_THU_3'); /* Chuyển sang Ảnh 3 */
+  }
+  95% {
+    background-image: url('URL_ANH_CONG_KHAI_THU_3');
+  }
+  100% {
+    background-image: url('URL_ANH_CONG_KHAI_THU_1'); /* Quay về Ảnh 1 để lặp */
+  }
+}
+   
 
 canvas {
 
@@ -519,4 +545,5 @@ var ParticlePool = (function() {
  </BODY>
 
 </HTML>
+
 
