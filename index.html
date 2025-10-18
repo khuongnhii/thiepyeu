@@ -53,46 +53,59 @@
   }
 }
   #message-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 10; /* Đảm bảo chữ nằm trên canvas */
-  pointer-events: none; /* Cho phép nhấp xuyên qua chữ xuống canvas */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    pointer-events: none;
+    /* THAY ĐỔI: Sử dụng flexbox để căn giữa theo chiều ngang */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 .falling-text {
-  position: absolute;
-  width: 100%;
-  text-align: center;
-  font-size: 2.5em; /* Kích thước chữ to */
-  font-weight: bold;
-  color: #fff; /* Màu chữ trắng */
-  text-shadow: 0 0 10px rgba(255, 107, 154, 0.8); /* Bóng chữ hồng lãng mạn */
-  
-  /* Bắt đầu hiệu ứng rơi */
-  animation: fall 18s ease-in infinite; /* Chạy vô hạn, chu kỳ 18 giây */
-  animation-delay: var(--delay);
-  opacity: 0;
+    position: absolute; /* Vẫn phải là absolute để chúng rơi độc lập */
+    width: 100%;
+    text-align: center;
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 0 0 10px rgba(255, 107, 154, 0.8);
+    
+    /* SỬA: Tăng thời gian chạy lên 24s để chữ rơi cực chậm và mượt hơn */
+    animation: fall 24s linear infinite; 
+    animation-delay: var(--delay);
+    opacity: 0; 
 }
 
 @keyframes fall {
-  0% {
-    transform: translateY(-50px); /* Bắt đầu từ phía trên */
-    opacity: 0;
-  }
-  5% {
-    opacity: 1; /* Hiển thị nhanh chóng */
-  }
-  95% {
-    transform: translateY(100vh); /* Rơi xuống hết màn hình (100vh) */
-    opacity: 1; /* Giữ nguyên độ mờ */
-  }
-  100% {
-    transform: translateY(100vh); /* Kết thúc ở cuối màn hình */
-    opacity: 0; /* Tan biến dần và lặp lại */
-  }
+    0% {
+        transform: translateY(-50px); /* Bắt đầu từ phía trên */
+        opacity: 0;
+    }
+    1% {
+        opacity: 1; /* Hiển thị nhanh */
+    }
+    75% {
+        transform: translateY(100vh); /* Rơi xuống hết màn hình */
+        opacity: 1; 
+    }
+    100% {
+        transform: translateY(100vh); 
+        opacity: 0; /* Tan biến dần */
+    }
+}
+
+/* KHẮC PHỤC: Làm Canvas trong suốt để ảnh nền hiện lên */
+canvas {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: transparent; /* Đảm bảo canvas không có nền đen */
 }
 
 canvas {
@@ -113,16 +126,19 @@ canvas {
  <BODY>
   <div id="message-container">
     <div class="falling-text" style="--delay: 0s;">Anh nhớ em rất nhiều! ❤️</div>
-    <div class="falling-text" style="--delay: 6s;">Anh nhớ em rất nhiều! ❤️</div>
-    <div class="falling-text" style="--delay: 12s;">Anh nhớ em rất nhiều! ❤️</div>
+    <div class="falling-text" style="--delay: 8s;">Anh nhớ em rất nhiều! ❤️</div>
+    <div class="falling-text" style="--delay: 16s;">Anh nhớ em rất nhiều! ❤️</div>
+    <div class="falling-text" style="--delay: 24s;">Anh nhớ em rất nhiều! ❤️</div>
     
-    <div class="falling-text" style="--delay: 1.5s;">Chúc em một ngày lễ 20-10 đầy ý nghĩa và nhiều niềm vuii!!</div>
-    <div class="falling-text" style="--delay: 7.5s;">Chúc em một ngày lễ 20-10 đầy ý nghĩa và nhiều niềm vuii!!</div>
-    <div class="falling-text" style="--delay: 13.5s;">Chúc em một ngày lễ 20-10 đầy ý nghĩa và nhiều niềm vuii!!</div>
+    <div class="falling-text" style="--delay: 2s;">Chúc em một ngày lễ 20-10 đầy ý nghĩa và nhiều niềm vuii!!</div>
+    <div class="falling-text" style="--delay: 10s;">Chúc em một ngày lễ 20-10 đầy ý nghĩa và nhiều niềm vuii!!</div>
+    <div class="falling-text" style="--delay: 18s;">Chúc em một ngày lễ 20-10 đầy ý nghĩa và nhiều niềm vuii!!</div>
+    <div class="falling-text" style="--delay: 26s;">Chúc em một ngày lễ 20-10 đầy ý nghĩa và nhiều niềm vuii!!</div>
 
-    <div class="falling-text" style="--delay: 3s;">Cảm ơn vì tất cả.</div>
-    <div class="falling-text" style="--delay: 9s;">Cảm ơn vì tất cả.</div>
-    <div class="falling-text" style="--delay: 15s;">Cảm ơn vì tất cả.</div>
+    <div class="falling-text" style="--delay: 4s;">Cảm ơn vì tất cả.</div>
+    <div class="falling-text" style="--delay: 12s;">Cảm ơn vì tất cả.</div>
+    <div class="falling-text" style="--delay: 20s;">Cảm ơn vì tất cả.</div>
+    <div class="falling-text" style="--delay: 28s;">Cảm ơn vì tất cả.</div>
   </div>
 
   <canvas id="pinkboard"></canvas>
@@ -599,6 +615,7 @@ var ParticlePool = (function() {
  </BODY>
 
 </HTML>
+
 
 
 
