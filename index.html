@@ -3,6 +3,36 @@
  <HEAD>
   <TITLE>New Document</TITLE>
   <style>
+    #intro-screen {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: pink;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+      animation: intro-fadeout 4s ease forwards 5s; /* hiện 5s rồi mờ dần trong 4s */
+    }
+
+    #intro-text {
+      font-size: 3em;
+      color: red;
+      text-shadow: 0 0 20px rgba(255,0,0,0.8);
+      opacity: 0;
+      animation: intro-appear 3s ease forwards;
+    }
+
+    @keyframes intro-appear {
+      0% {opacity: 0; transform: scale(0.8);}
+      50% {opacity: 1; transform: scale(1.05);}
+      100% {opacity: 1; transform: scale(1);}
+    }
+
+    @keyframes intro-fadeout {
+      0% {opacity: 1;}
+      100% {opacity: 0; visibility: hidden;}
+    }
     /* 1. HIỆU ỨNG SLIDESHOW ẢNH (ĐÃ THÊM 3 ẢNH MỚI) */
     html, body {
         height: 100%;
@@ -99,6 +129,10 @@
   </style>
  </HEAD>
  <BODY>
+  <div id="intro-screen">
+    <h1 id="intro-text">Chào em, người con gái đẹp nhất hôm nay 💖</h1>
+  </div>
+  <div id="main-content" style="display:none;">
   <div id="message-container">
     <div class="falling-text" style="--delay: 0s;">Anh nhớ em rất nhiều! ❤️</div>
     <div class="falling-text" style="--delay: 1s;">Chúc em một ngày lễ 20-10 đầy ý nghĩa và nhiều niềm vuii!!</div>
@@ -195,6 +229,10 @@
   </script>
 
   <script>
+   setTimeout(() => {
+    document.getElementById('intro-screen').style.display = 'none';
+    document.getElementById('main-content').style.display = 'block';
+  }, 9000); // 9s = 5s hiển thị + 4s mờ dần
   var settings = {
       particles: {
           length: 500,
@@ -344,4 +382,5 @@
   </script>
  </BODY>
 </HTML>
+
 
