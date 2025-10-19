@@ -1,354 +1,346 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <HTML>
- <HEAD>
-  <TITLE> New Document </TITLE>
-  <style>
-    /* 1. HIỆU ỨNG SLIDESHOW ẢNH */
-    html, body {
-        height: 100%;
-        padding: 0;
-        margin: 0;
-        background-color: #000;
-        animation: background-slideshow 24s infinite;
-        background-size: cover;
-        background-position: center;
-    }
-    @keyframes background-slideshow {
-        0% { background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/IMG_4532.jpeg'); } 
-        8% { background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/IMG_4532.jpeg'); }
-        /* Ảnh 2 */
-        16% { background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.9XQ-uD4t5vTSFlZPuiEHzCguDWB4x-2EuUOJ16GHzts.jpeg'); }
-        24% { background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.9XQ-uD4t5vTSFlZPuiEHzCguDWB4x-2EuUOJ16GHzts.jpeg'); }
-        /* Ảnh 3 */
-        32% { background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.KHBZJo12GVj0lcgokuydl9Wx3in65XOYofD_hw2J-7U.jpeg'); }
-        40% { background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.KHBZJo12GVj0lcgokuydl9Wx3in65XOYofD_hw2J-7U.jpeg'); }
-        /* Ảnh 4 (Mới) */
-        48% { background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.i6eP7vMK1pGsMDXoYcol8v5wP6Qqw8aGx-LlwS7jA7k.jpeg'); } /* Ảnh placeholder 1 */
-        56% { background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.i6eP7vMK1pGsMDXoYcol8v5wP6Qqw8aGx-LlwS7jA7k.jpeg'); }
-        /* Ảnh 5 (Mới) */
-        64% { background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.eEAqLW9_2Kxo63UHqCziTiJH1_3r2VRyQAn1rLDVuF8.jpeg'); } /* Ảnh placeholder 2 */
-        72% { background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.eEAqLW9_2Kxo63UHqCziTiJH1_3r2VRyQAn1rLDVuF8.jpeg'); }
-        /* Ảnh 6 (Mới) */
-        80% { background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.Joc437wNMOymTbujbtcWgoPtqIUGgZeDmU3j9tVheM8.jpeg'); } /* Ảnh placeholder 3 */
-        88% { background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.Joc437wNMOymTbujbtcWgoPtqIUGgZeDmU3j9tVheM8.jpeg'); }
-        /* Trở lại Ảnh 1 */
-        100% { background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/IMG_4532.jpeg'); }
-    }   
+ <HEAD>
+  <TITLE>New Document</TITLE>
+  <style>
+    /* 1. HIỆU ỨNG SLIDESHOW ẢNH (ĐÃ THÊM 3 ẢNH MỚI) */
+    html, body {
+        height: 100%;
+        padding: 0;
+        margin: 0;
+        background-color: #000;
+        /* Tổng thời gian tăng lên 48s để chứa 6 ảnh */
+        animation: background-slideshow 48s infinite;
+        background-size: cover;
+        background-position: center;
+    }
+    @keyframes background-slideshow {
+        /* Tổng cộng 6 ảnh, mỗi ảnh hiện 8s (25% của 48s là 12s, chia 6 ảnh = 8s/ảnh) */
+        /* Ảnh 1 */
+        0% { background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/IMG_4532.jpeg'); } 
+        8% { background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/IMG_4532.jpeg'); }
+        /* Ảnh 2 */
+        16% { background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.9XQ-uD4t5vTSFlZPuiEHzCguDWB4x-2EuUOJ16GHzts.jpeg'); }
+        24% { background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.9XQ-uD4t5vTSFlZPuiEHzCguDWB4x-2EuUOJ16GHzts.jpeg'); }
+        /* Ảnh 3 */
+        32% { background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.KHBZJo12GVj0lcgokuydl9Wx3in65XOYofD_hw2J-7U.jpeg'); }
+        40% { background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.KHBZJo12GVj0lcgokuydl9Wx3in65XOYofD_hw2J-7U.jpeg'); }
+        /* Ảnh 4 (Mới) */
+        48% { background-image: url('https://picsum.photos/id/1018/1920/1080'); } /* Ảnh placeholder 1 */
+        56% { background-image: url('https://picsum.photos/id/1018/1920/1080'); }
+        /* Ảnh 5 (Mới) */
+        64% { background-image: url('https://picsum.photos/id/1025/1920/1080'); } /* Ảnh placeholder 2 */
+        72% { background-image: url('https://picsum.photos/id/1025/1920/1080'); }
+        /* Ảnh 6 (Mới) */
+        80% { background-image: url('https://picsum.photos/id/1037/1920/1080'); } /* Ảnh placeholder 3 */
+        88% { background-image: url('https://picsum.photos/id/1037/1920/1080'); }
+        /* Trở lại Ảnh 1 */
+        100% { background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/IMG_4532.jpeg'); }
+    }    
 
-    /* 2. HIỆU ỨNG CHỮ RƠI */
-    #message-container {
-        position: absolute;
-        top: 0; left: 0;
-        width: 100%; height: 100%;
-        z-index: 10;
-        pointer-events: none;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: center;
-    }
-    .falling-text {
-        position: absolute;
-        width: 100%;
-        text-align: center;
-        font-size: 2.5em;
-        font-weight: bold;
-        color: #fff;
-        text-shadow: 0 0 10px rgba(255, 107, 154, 0.8);
-        animation: fall 24s linear infinite;
-        animation-delay: var(--delay);
-        opacity: 0;
-    }
-    @keyframes fall {
-        0% { transform: translateY(-50px); opacity: 0; }
-        1% { opacity: 1; } 
-        75% { transform: translateY(100vh); opacity: 1; }
-        100% { transform: translateY(100vh); opacity: 0; }
-    }
+    /* 2. HIỆU ỨNG CHỮ RƠI */
+    #message-container {
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        z-index: 10;
+        pointer-events: none;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+    }
+    .falling-text {
+        position: absolute;
+        width: 100%;
+        text-align: center;
+        font-size: 2.5em;
+        font-weight: bold;
+        color: #fff;
+        text-shadow: 0 0 10px rgba(255, 107, 154, 0.8);
+        /* Cập nhật thời gian animation: 48s (tổng thời gian slideshow) */
+        animation: fall 48s linear infinite; 
+        animation-delay: var(--delay);
+        opacity: 0;
+    }
+    @keyframes fall {
+        0% { transform: translateY(-50px); opacity: 0; }
+        1% { opacity: 1; } 
+        75% { transform: translateY(100vh); opacity: 1; }
+        100% { transform: translateY(100vh); opacity: 0; }
+    }
 
-    canvas {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        background-color: transparent;
-    }
-   .falling-icon {
-        position: absolute;
-        color: #ffb6c1; /* Màu hồng nhạt cho hoa/trái tim */
-        font-size: 2em;
-        z-index: 5; /* Nằm dưới chữ rơi */
-        pointer-events: none;
-        /* Animation: rơi 15s (thời gian ngẫu nhiên), lặp lại vô hạn, bắt đầu ngẫu nhiên */
-        animation: slow-fall 15s linear infinite;
-        opacity: 0.8;
-    }
-   @keyframes slow-fall {
-        0% { transform: translate3d(0, -10vh, 0) rotate(0deg); opacity: 0; }
-        1% { opacity: 0.8; }
-        99% { opacity: 0.8; }
-        100% { transform: translate3d(0, 100vh, 0) rotate(360deg); opacity: 0; }
-    }
-  </style>
- </HEAD>
- <BODY>
-  <div id="message-container">
-    <div class="falling-text" style="--delay: 0s;">Anh nhớ em rất nhiều! ❤️</div>
-    <div class="falling-text" style="--delay: 0.5s;">Anh nhớ em rất nhiều! ❤️</div>
-    <div class="falling-text" style="--delay: 1s;">Anh nhớ em rất nhiều! ❤️</div>
-    <div class="falling-text" style="--delay: 1.5s;">Anh nhớ em rất nhiều! ❤️</div>
-    <div class="falling-text" style="--delay: 8s;">Anh nhớ em rất nhiều! ❤️</div>
-    <div class="falling-text" style="--delay: 8.5s;">Anh nhớ em rất nhiều! ❤️</div>
-    <div class="falling-text" style="--delay: 9s;">Anh nhớ em rất nhiều! ❤️</div>
-    <div class="falling-text" style="--delay: 9.5s;">Anh nhớ em rất nhiều! ❤️</div>
-    <div class="falling-text" style="--delay: 16s;">Anh nhớ em rất nhiều! ❤️</div>
-    <div class="falling-text" style="--delay: 16.5s;">Anh nhớ em rất nhiều! ❤️</div>
-    <div class="falling-text" style="--delay: 17s;">Anh nhớ em rất nhiều! ❤️</div>
-    <div class="falling-text" style="--delay: 17.5s;">Anh nhớ em rất nhiều! ❤️</div>
+    canvas {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: transparent;
+    }
 
-    <div class="falling-text" style="--delay: 3s;">Chúc em một ngày lễ 20-10 đầy ý nghĩa và nhiều niềm vuii!!</div>
-    <div class="falling-text" style="--delay: 11s;">Chúc em một ngày lễ 20-10 đầy ý nghĩa và nhiều niềm vuii!!</div>
-    <div class="falling-text" style="--delay: 19s;">Chúc em một ngày lễ 20-10 đầy ý nghĩa và nhiều niềm vuii!!</div>
+    /* 3. HIỆU ỨNG RƠI VÔ HẠN */
+    .falling-icon {
+        position: absolute;
+        color: #ffb6c1; /* Màu hồng nhạt cho hoa/trái tim */
+        font-size: 2em;
+        z-index: 5; /* Nằm dưới chữ rơi */
+        pointer-events: none;
+        /* Animation: rơi 15s (thời gian ngẫu nhiên), lặp lại vô hạn, bắt đầu ngẫu nhiên */
+        animation: slow-fall 15s linear infinite;
+        opacity: 0.8;
+    }
 
-    <div class="falling-text" style="--delay: 5s;">Cảm ơn vì tất cả.</div>
-    <div class="falling-text" style="--delay: 13s;">Cảm ơn vì tất cả.</div>
-    <div class="falling-text" style="--delay: 21s;">Cảm ơn vì tất cả.</div>
-  </div>
-  <div id="falling-icons-container" 
-     style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;">
-  </div> 
+    @keyframes slow-fall {
+        0% { transform: translate3d(0, -10vh, 0) rotate(0deg); opacity: 0; }
+        1% { opacity: 0.8; }
+        99% { opacity: 0.8; }
+        100% { transform: translate3d(0, 100vh, 0) rotate(360deg); opacity: 0; }
+    }
 
+  </style>
+ </HEAD>
+ <BODY>
+  <div id="message-container">
+    <div class="falling-text" style="--delay: 0s;">Anh nhớ em rất nhiều! ❤️</div>
+    <div class="falling-text" style="--delay: 1s;">Chúc em một ngày lễ 20-10 đầy ý nghĩa và nhiều niềm vuii!!</div>
+    <div class="falling-text" style="--delay: 2s;">Cảm ơn vì tất cả.</div>
+    <div class="falling-text" style="--delay: 12s;">Anh nhớ em rất nhiều! ❤️</div>
+    <div class="falling-text" style="--delay: 13s;">Chúc em một ngày lễ 20-10 đầy ý nghĩa và nhiều niềm vuii!!</div>
+    <div class="falling-text" style="--delay: 14s;">Cảm ơn vì tất cả.</div>
+    <div class="falling-text" style="--delay: 24s;">Anh nhớ em rất nhiều! ❤️</div>
+    <div class="falling-text" style="--delay: 25s;">Chúc em một ngày lễ 20-10 đầy ý nghĩa và nhiều niềm vuii!!</div>
+    <div class="falling-text" style="--delay: 26s;">Cảm ơn vì tất cả.</div>
+    <div class="falling-text" style="--delay: 36s;">Anh nhớ em rất nhiều! ❤️</div>
+    <div class="falling-text" style="--delay: 37s;">Chúc em một ngày lễ 20-10 đầy ý nghĩa và nhiều niềm vuii!!</div>
+    <div class="falling-text" style="--delay: 38s;">Cảm ơn vì tất cả.</div>
+  </div>
 
+  <div id="falling-icons-container"></div>
+  <canvas id="pinkboard"></canvas>
 
-  <canvas id="pinkboard"></canvas>
+  <button id="musicButton" 
+          style="position: fixed; bottom: 30px; right: 30px; 
+                 background: radial-gradient(circle, #ff7aa8, #ff4081);
+                 border: none; border-radius: 50%;
+                 width: 70px; height: 70px;
+                 box-shadow: 0 0 20px rgba(255,100,150,0.7);
+                 cursor: pointer;
+                 color: white; font-size: 20px;
+                 animation: glow 2s ease-in-out infinite alternate;
+                 z-index: 999;">
+      💞
+  </button>
 
-  <!-- 💞 Nút phát nhạc -->
-  <button id="musicButton" 
-          style="position: fixed; bottom: 30px; right: 30px; 
-                 background: radial-gradient(circle, #ff7aa8, #ff4081);
-                 border: none; border-radius: 50%;
-                 width: 70px; height: 70px;
-                 box-shadow: 0 0 20px rgba(255,100,150,0.7);
-                 cursor: pointer;
-                 color: white; font-size: 20px;
-                 animation: glow 2s ease-in-out infinite alternate;
-                 z-index: 999;">
-      💞
-  </button>
+  <audio id="bgm" 
+          src="https://khuongnhii.github.io/thiepyeu/bgm.mp3"
+          preload="auto" loop playsinline></audio>
 
-  <audio id="bgm" 
-         src="https://khuongnhii.github.io/thiepyeu/bgm.mp3"
-         preload="auto" loop playsinline></audio>
+  <style>
+  @keyframes glow {
+    from { box-shadow: 0 0 10px rgba(255,120,160,0.6); }
+    to { box-shadow: 0 0 25px rgba(255,60,120,1); }
+  }
+  </style>
 
-  <style>
-  @keyframes glow {
-    from { box-shadow: 0 0 10px rgba(255,120,160,0.6); }
-    to { box-shadow: 0 0 25px rgba(255,60,120,1); }
-  }
-  </style>
+  <script>
+  const btn = document.getElementById('musicButton');
+  const bgm = document.getElementById('bgm');
+  let playing = false;
 
-  <script>
-  const btn = document.getElementById('musicButton');
-  const bgm = document.getElementById('bgm');
-  let playing = false;
+  btn.addEventListener('click', async () => {
+    try {
+      if (!playing) {
+        await bgm.play();
+        bgm.volume = 0.8;
+        playing = true;
+        btn.innerText = "🎶";
+        btn.style.boxShadow = "0 0 30px rgba(255,180,220,1)";
+      } else {
+        bgm.pause();
+        playing = false;
+        btn.innerText = "💞";
+        btn.style.boxShadow = "0 0 20px rgba(255,100,150,0.7)";
+      }
+    } catch (err) {
+      console.log("Không phát được nhạc:", err);
+    }
+  });
+  </script>
 
-  btn.addEventListener('click', async () => {
-    try {
-      if (!playing) {
-        await bgm.play();
-        bgm.volume = 0.8;
-        playing = true;
-        btn.innerText = "🎶";
-        btn.style.boxShadow = "0 0 30px rgba(255,180,220,1)";
-      } else {
-        bgm.pause();
-        playing = false;
-        btn.innerText = "💞";
-        btn.style.boxShadow = "0 0 20px rgba(255,100,150,0.7)";
-      }
-    } catch (err) {
-      console.log("Không phát được nhạc:", err);
-    }
-  });
-  </script>
+  <script>
+  function createFallingIcons() {
+      const container = document.getElementById('falling-icons-container');
+      const icons = ['❤️', '🌸']; // Các icon muốn rơi
+      const numberOfIcons = 30; // Số lượng icon rơi cùng lúc
 
-  <script>
-  function createFallingIcons() {
-      const container = document.getElementById('falling-icons-container');
-      const icons = ['❤️', '🌸']; // Các icon muốn rơi
-      const numberOfIcons = 30; // Số lượng icon rơi cùng lúc
+      for (let i = 0; i < numberOfIcons; i++) {
+          const icon = document.createElement('div');
+          icon.classList.add('falling-icon');
+          icon.innerHTML = icons[Math.floor(Math.random() * icons.length)];
+          
+          // Thiết lập vị trí và animation ngẫu nhiên
+          const startX = Math.random() * 100; // Vị trí X ngẫu nhiên (0% - 100%)
+          const delay = Math.random() * 15; // Delay ngẫu nhiên (0s - 15s)
+          const duration = 10 + Math.random() * 5; // Thời gian rơi ngẫu nhiên (10s - 15s)
+          
+          icon.style.left = `${startX}vw`;
+          icon.style.animationDelay = `-${delay}s`; // Bắt đầu ở các giai đoạn khác nhau
+          icon.style.animationDuration = `${duration}s`;
+          
+          container.appendChild(icon);
+      }
+  }
 
-      for (let i = 0; i < numberOfIcons; i++) {
-          const icon = document.createElement('div');
-          icon.classList.add('falling-icon');
-          icon.innerHTML = icons[Math.floor(Math.random() * icons.length)];
-          
-          // Thiết lập vị trí và animation ngẫu nhiên
-          const startX = Math.random() * 100; // Vị trí X ngẫu nhiên (0% - 100%)
-          const delay = Math.random() * 15; // Delay ngẫu nhiên (0s - 15s)
-          const duration = 10 + Math.random() * 5; // Thời gian rơi ngẫu nhiên (10s - 15s)
-          
-          icon.style.left = `${startX}vw`;
-          icon.style.animationDelay = `-${delay}s`; // Bắt đầu ở các giai đoạn khác nhau
-          icon.style.animationDuration = `${duration}s`;
-          
-          container.appendChild(icon);
-      }
-  }
+  // Khởi tạo hiệu ứng rơi sau khi trang tải xong
+  document.addEventListener('DOMContentLoaded', createFallingIcons);
+  </script>
 
-  // Khởi tạo hiệu ứng rơi sau khi trang tải xong
-  document.addEventListener('DOMContentLoaded', createFallingIcons);
-  </script>
+  <script>
+  var settings = {
+      particles: {
+          length: 500,
+          duration: 2,
+          velocity: 100,
+          effect: -0.75,
+          size: 30,
+      },
+  };
 
-  <!-- Toàn bộ phần hiệu ứng trái tim -->
-  <script>
-  var settings = {
-      particles: {
-          length: 500,
-          duration: 2,
-          velocity: 100,
-          effect: -0.75,
-          size: 30,
-      },
-  };
+  var Point = (function() {
+      function Point(x, y) {
+          this.x = (typeof x !== 'undefined') ? x : 0;
+          this.y = (typeof y !== 'undefined') ? y : 0;
+      }
+      Point.prototype.clone = function() { return new Point(this.x, this.y); };
+      Point.prototype.length = function(length) {
+          if (typeof length == 'undefined')
+              return Math.sqrt(this.x * this.x + this.y * this.y);
+          this.normalize();
+          this.x *= length; this.y *= length; return this;
+      };
+      Point.prototype.normalize = function() {
+          var length = this.length(); this.x /= length; this.y /= length; return this;
+      };
+      return Point;
+  })();
 
-  var Point = (function() {
-      function Point(x, y) {
-          this.x = (typeof x !== 'undefined') ? x : 0;
-          this.y = (typeof y !== 'undefined') ? y : 0;
-      }
-      Point.prototype.clone = function() { return new Point(this.x, this.y); };
-      Point.prototype.length = function(length) {
-          if (typeof length == 'undefined')
-              return Math.sqrt(this.x * this.x + this.y * this.y);
-          this.normalize();
-          this.x *= length; this.y *= length; return this;
-      };
-      Point.prototype.normalize = function() {
-          var length = this.length(); this.x /= length; this.y /= length; return this;
-      };
-      return Point;
-  })();
+  var Particle = (function() {
+      function Particle() { this.position = new Point(); this.velocity = new Point(); this.acceleration = new Point(); this.age = 0; }
+      Particle.prototype.initialize = function(x, y, dx, dy) {
+          this.position.x = x; this.position.y = y;
+          this.velocity.x = dx; this.velocity.y = dy;
+          this.acceleration.x = dx * settings.particles.effect;
+          this.acceleration.y = dy * settings.particles.effect;
+          this.age = 0;
+      };
+      Particle.prototype.update = function(dt) {
+          this.position.x += this.velocity.x * dt;
+          this.position.y += this.velocity.y * dt;
+          this.velocity.x += this.acceleration.x * dt;
+          this.velocity.y += this.acceleration.y * dt;
+          this.age += dt;
+      };
+      Particle.prototype.draw = function(ctx, image) {
+          function ease(t) { return (--t) * t * t + 1; }
+          var size = image.width * ease(this.age / settings.particles.duration);
+          ctx.globalAlpha = 1 - this.age / settings.particles.duration;
+          ctx.drawImage(image, this.position.x - size / 2, this.position.y - size / 2, size, size);
+      };
+      return Particle;
+  })();
 
-  var Particle = (function() {
-      function Particle() { this.position = new Point(); this.velocity = new Point(); this.acceleration = new Point(); this.age = 0; }
-      Particle.prototype.initialize = function(x, y, dx, dy) {
-          this.position.x = x; this.position.y = y;
-          this.velocity.x = dx; this.velocity.y = dy;
-          this.acceleration.x = dx * settings.particles.effect;
-          this.acceleration.y = dy * settings.particles.effect;
-          this.age = 0;
-      };
-      Particle.prototype.update = function(dt) {
-          this.position.x += this.velocity.x * dt;
-          this.position.y += this.velocity.y * dt;
-          this.velocity.x += this.acceleration.x * dt;
-          this.velocity.y += this.acceleration.y * dt;
-          this.age += dt;
-      };
-      Particle.prototype.draw = function(ctx, image) {
-          function ease(t) { return (--t) * t * t + 1; }
-          var size = image.width * ease(this.age / settings.particles.duration);
-          ctx.globalAlpha = 1 - this.age / settings.particles.duration;
-          ctx.drawImage(image, this.position.x - size / 2, this.position.y - size / 2, size, size);
-      };
-      return Particle;
-  })();
+  var ParticlePool = (function() {
+      var particles, firstActive = 0, firstFree = 0, duration = settings.particles.duration;
+      function ParticlePool(length) {
+          particles = new Array(length);
+          for (var i = 0; i < particles.length; i++) particles[i] = new Particle();
+      }
+      ParticlePool.prototype.add = function(x, y, dx, dy) {
+          particles[firstFree].initialize(x, y, dx, dy);
+          firstFree++; if (firstFree == particles.length) firstFree = 0;
+          if (firstActive == firstFree) { firstActive++; if (firstActive == particles.length) firstActive = 0; }
+      };
+      ParticlePool.prototype.update = function(dt) {
+          if (firstActive < firstFree)
+              for (var i = firstActive; i < firstFree; i++) particles[i].update(dt);
+          if (firstFree < firstActive) {
+              for (var i = firstActive; i < particles.length; i++) particles[i].update(dt);
+              for (var i = 0; i < firstFree; i++) particles[i].update(dt);
+          }
+          while (particles[firstActive].age >= duration && firstActive != firstFree) {
+              firstActive++; if (firstActive == particles.length) firstActive = 0;
+          }
+      };
+      ParticlePool.prototype.draw = function(ctx, image) {
+          if (firstActive < firstFree)
+              for (var i = firstActive; i < firstFree; i++) particles[i].draw(ctx, image);
+          if (firstFree < firstActive) {
+              for (var i = firstActive; i < particles.length; i++) particles[i].draw(ctx, image);
+              for (var i = 0; i < firstFree; i++) particles[i].draw(ctx, image);
+          }
+      };
+      return ParticlePool;
+  })();
 
-  var ParticlePool = (function() {
-      var particles, firstActive = 0, firstFree = 0, duration = settings.particles.duration;
-      function ParticlePool(length) {
-          particles = new Array(length);
-          for (var i = 0; i < particles.length; i++) particles[i] = new Particle();
-      }
-      ParticlePool.prototype.add = function(x, y, dx, dy) {
-          particles[firstFree].initialize(x, y, dx, dy);
-          firstFree++; if (firstFree == particles.length) firstFree = 0;
-          if (firstActive == firstFree) { firstActive++; if (firstActive == particles.length) firstActive = 0; }
-      };
-      ParticlePool.prototype.update = function(dt) {
-          if (firstActive < firstFree)
-              for (var i = firstActive; i < firstFree; i++) particles[i].update(dt);
-          if (firstFree < firstActive) {
-              for (var i = firstActive; i < particles.length; i++) particles[i].update(dt);
-              for (var i = 0; i < firstFree; i++) particles[i].update(dt);
-          }
-          while (particles[firstActive].age >= duration && firstActive != firstFree) {
-              firstActive++; if (firstActive == particles.length) firstActive = 0;
-          }
-      };
-      ParticlePool.prototype.draw = function(ctx, image) {
-          if (firstActive < firstFree)
-              for (var i = firstActive; i < firstFree; i++) particles[i].draw(ctx, image);
-          if (firstFree < firstActive) {
-              for (var i = firstActive; i < particles.length; i++) particles[i].draw(ctx, image);
-              for (var i = 0; i < firstFree; i++) particles[i].draw(ctx, image);
-          }
-      };
-      return ParticlePool;
-  })();
+  (function(canvas) {
+      var ctx = canvas.getContext('2d'),
+          particles = new ParticlePool(settings.particles.length),
+          particleRate = settings.particles.length / settings.particles.duration,
+          time;
+      function pointOnHeart(t) {
+          return new Point(
+              160 * Math.pow(Math.sin(t), 3),
+              130 * Math.cos(t) - 50 * Math.cos(2*t) - 20 * Math.cos(3*t) - 10 * Math.cos(4*t) + 25
+          );
+      }
+      var image = (function() {
+          var canvas = document.createElement('canvas'), ctx = canvas.getContext('2d');
+          canvas.width = settings.particles.size; canvas.height = settings.particles.size;
+          function to(t) {
+              var p = pointOnHeart(t);
+              p.x = settings.particles.size/2 + p.x * settings.particles.size/350;
+              p.y = settings.particles.size/2 - p.y * settings.particles.size/350;
+              return p;
+          }
+          ctx.beginPath();
+          var t = -Math.PI, p = to(t);
+          ctx.moveTo(p.x, p.y);
+          while (t < Math.PI) { t += 0.01; p = to(t); ctx.lineTo(p.x, p.y); }
+          ctx.closePath();
+          ctx.fillStyle = '#FF3860';
+          ctx.fill();
+          var img = new Image();
+          img.src = canvas.toDataURL();
+          return img;
+      })();
 
-  (function(canvas) {
-      var ctx = canvas.getContext('2d'),
-          particles = new ParticlePool(settings.particles.length),
-          particleRate = settings.particles.length / settings.particles.duration,
-          time;
-      function pointOnHeart(t) {
-          return new Point(
-              160 * Math.pow(Math.sin(t), 3),
-              130 * Math.cos(t) - 50 * Math.cos(2*t) - 20 * Math.cos(3*t) - 10 * Math.cos(4*t) + 25
-          );
-      }
-      var image = (function() {
-          var canvas = document.createElement('canvas'), ctx = canvas.getContext('2d');
-          canvas.width = settings.particles.size; canvas.height = settings.particles.size;
-          function to(t) {
-              var p = pointOnHeart(t);
-              p.x = settings.particles.size/2 + p.x * settings.particles.size/350;
-              p.y = settings.particles.size/2 - p.y * settings.particles.size/350;
-              return p;
-          }
-          ctx.beginPath();
-          var t = -Math.PI, p = to(t);
-          ctx.moveTo(p.x, p.y);
-          while (t < Math.PI) { t += 0.01; p = to(t); ctx.lineTo(p.x, p.y); }
-          ctx.closePath();
-          ctx.fillStyle = '#FF3860';
-          ctx.fill();
-          var img = new Image();
-          img.src = canvas.toDataURL();
-          return img;
-      })();
+      function renderHeart(dt, offsetX, offsetY) {
+          var amount = particleRate * dt;
+          for (var i = 0; i < amount; i++) {
+              var pos = pointOnHeart(Math.PI - 2 * Math.PI * Math.random());
+              var dir = pos.clone().length(settings.particles.velocity);
+              particles.add(canvas.width/2 + pos.x + offsetX, canvas.height/2 - pos.y + offsetY, dir.x, -dir.y);
+          }
+      }
 
-      function renderHeart(dt, offsetX, offsetY) {
-          var amount = particleRate * dt;
-          for (var i = 0; i < amount; i++) {
-              var pos = pointOnHeart(Math.PI - 2 * Math.PI * Math.random());
-              var dir = pos.clone().length(settings.particles.velocity);
-              particles.add(canvas.width/2 + pos.x + offsetX, canvas.height/2 - pos.y + offsetY, dir.x, -dir.y);
-          }
-      }
-
-      function render() {
-          requestAnimationFrame(render);
-          var newTime = new Date().getTime()/1000, dt = newTime - (time || newTime);
-          time = newTime;
-          ctx.clearRect(0, 0, canvas.width, canvas.height);
-          var offset = 180;
-          renderHeart(dt, 0, -offset);
-          renderHeart(dt, -offset, offset/2);
-          renderHeart(dt, offset, offset/2);
-          particles.update(dt);
-          particles.draw(ctx, image);
-      }
-      function onResize() {
-          canvas.width = canvas.clientWidth;
-          canvas.height = canvas.clientHeight;
-      }
-      window.onresize = onResize;
-      setTimeout(function(){ onResize(); render(); }, 10);
-  })(document.getElementById('pinkboard'));
-  </script>
- </BODY>
+      function render() {
+          requestAnimationFrame(render);
+          var newTime = new Date().getTime()/1000, dt = newTime - (time || newTime);
+          time = newTime;
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          var offset = 180;
+          renderHeart(dt, 0, -offset);
+          renderHeart(dt, -offset, offset/2);
+          renderHeart(dt, offset, offset/2);
+          particles.update(dt);
+          particles.draw(ctx, image);
+      }
+      function onResize() {
+          canvas.width = canvas.clientWidth;
+          canvas.height = canvas.clientHeight;
+      }
+      window.onresize = onResize;
+      setTimeout(function(){ onResize(); render(); }, 10);
+  })(document.getElementById('pinkboard'));
+  </script>
+ </BODY>
 </HTML>
-
-
