@@ -319,6 +319,7 @@
       return ParticlePool;
   })();
 
+  setTimeout(() => {
   (function(canvas) {
       var ctx = canvas.getContext('2d'),
           particles = new ParticlePool(settings.particles.length),
@@ -379,8 +380,10 @@
       window.onresize = onResize;
       setTimeout(function(){ onResize(); render(); }, 10);
   })(document.getElementById('pinkboard'));
+}, 9000); // khởi động sau khi màn hình intro biến mất
   </script>
  </BODY>
 </HTML>
+
 
 
