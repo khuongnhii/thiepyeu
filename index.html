@@ -4,16 +4,19 @@
   <TITLE> New Document </TITLE>
   <style>
     /* 1. HIỆU ỨNG SLIDESHOW ẢNH */
+    /* Cập nhật thời gian animation lên 48s để chia đều cho 6 ảnh */
     html, body {
         height: 100%;
         padding: 0;
         margin: 0;
         background-color: #000;
-        animation: background-slideshow 24s infinite;
+        animation: background-slideshow 48s infinite; /* Đã sửa: 48s */
         background-size: cover;
         background-position: center;
     }
     @keyframes background-slideshow {
+        /* 6 ảnh, mỗi ảnh hiển thị 8% thời gian */
+        /* Ảnh 1 */
         0% { background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/IMG_4532.jpeg'); } 
         8% { background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/IMG_4532.jpeg'); }
         /* Ảnh 2 */
@@ -23,17 +26,17 @@
         32% { background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.KHBZJo12GVj0lcgokuydl9Wx3in65XOYofD_hw2J-7U.jpeg'); }
         40% { background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.KHBZJo12GVj0lcgokuydl9Wx3in65XOYofD_hw2J-7U.jpeg'); }
         /* Ảnh 4 (Mới) */
-        48% { background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.i6eP7vMK1pGsMDXoYcol8v5wP6Qqw8aGx-LlwS7jA7k.jpeg'); } /* Ảnh placeholder 1 */
+        48% { background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.i6eP7vMK1pGsMDXoYcol8v5wP6Qqw8aGx-LlwS7jA7k.jpeg'); }
         56% { background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.i6eP7vMK1pGsMDXoYcol8v5wP6Qqw8aGx-LlwS7jA7k.jpeg'); }
         /* Ảnh 5 (Mới) */
-        64% { background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.eEAqLW9_2Kxo63UHqCziTiJH1_3r2VRyQAn1rLDVuF8.jpeg'); } /* Ảnh placeholder 2 */
+        64% { background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.eEAqLW9_2Kxo63UHqCziTiJH1_3r2VRyQAn1rLDVuF8.jpeg'); }
         72% { background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.eEAqLW9_2Kxo63UHqCziTiJH1_3r2VRyQAn1rLDVuF8.jpeg'); }
         /* Ảnh 6 (Mới) */
-        80% { background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.Joc437wNMOymTbujbtcWgoPtqIUGgZeDmU3j9tVheM8.jpeg'); } /* Ảnh placeholder 3 */
+        80% { background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.Joc437wNMOymTbujbtcWgoPtqIUGgZeDmU3j9tVheM8.jpeg'); }
         88% { background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.Joc437wNMOymTbujbtcWgoPtqIUGgZeDmU3j9tVheM8.jpeg'); }
         /* Trở lại Ảnh 1 */
         100% { background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/IMG_4532.jpeg'); }
-    }   
+    }    
 
     /* 2. HIỆU ỨNG CHỮ RƠI */
     #message-container {
@@ -55,7 +58,7 @@
         font-weight: bold;
         color: #fff;
         text-shadow: 0 0 10px rgba(255, 107, 154, 0.8);
-        animation: fall 24s linear infinite;
+        animation: fall 48s linear infinite; /* Đã sửa: 48s để đồng bộ */
         animation-delay: var(--delay);
         opacity: 0;
     }
@@ -66,57 +69,66 @@
         100% { transform: translateY(100vh); opacity: 0; }
     }
 
+    /* 3. HIỆU ỨNG ICON RƠI VÔ HẠN */
+    /* Container giúp icon rơi trên toàn màn hình */
+    #falling-icons-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden; /* Quan trọng để icon không tràn ra ngoài */
+        pointer-events: none;
+        z-index: 5;
+    }
+    .falling-icon {
+        position: absolute;
+        color: #ffb6c1; 
+        font-size: 2em;
+        z-index: 5; 
+        pointer-events: none;
+        animation: slow-fall 15s linear infinite;
+        opacity: 0.8;
+    }
+    @keyframes slow-fall {
+        0% { transform: translate3d(0, -10vh, 0) rotate(0deg); opacity: 0; }
+        1% { opacity: 0.8; }
+        99% { opacity: 0.8; }
+        100% { transform: translate3d(0, 100vh, 0) rotate(360deg); opacity: 0; }
+    }
+
     canvas {
         position: absolute;
         width: 100%;
         height: 100%;
         background-color: transparent;
     }
-   .falling-icon {
-        position: absolute;
-        color: #ffb6c1; /* Màu hồng nhạt cho hoa/trái tim */
-        font-size: 2em;
-        z-index: 5; /* Nằm dưới chữ rơi */
-        pointer-events: none;
-        /* Animation: rơi 15s (thời gian ngẫu nhiên), lặp lại vô hạn, bắt đầu ngẫu nhiên */
-        animation: slow-fall 15s linear infinite;
-        opacity: 0.8;
-    }
-   @keyframes slow-fall {
-        0% { transform: translate3d(0, -10vh, 0) rotate(0deg); opacity: 0; }
-        1% { opacity: 0.8; }
-        99% { opacity: 0.8; }
-        100% { transform: translate3d(0, 100vh, 0) rotate(360deg); opacity: 0; }
-    }
   </style>
  </HEAD>
  <BODY>
+    <div id="falling-icons-container"></div>
+    
   <div id="message-container">
     <div class="falling-text" style="--delay: 0s;">Anh nhớ em rất nhiều! ❤️</div>
-    <div class="falling-text" style="--delay: 0.5s;">Anh nhớ em rất nhiều! ❤️</div>
     <div class="falling-text" style="--delay: 1s;">Anh nhớ em rất nhiều! ❤️</div>
-    <div class="falling-text" style="--delay: 1.5s;">Anh nhớ em rất nhiều! ❤️</div>
-    <div class="falling-text" style="--delay: 8s;">Anh nhớ em rất nhiều! ❤️</div>
-    <div class="falling-text" style="--delay: 8.5s;">Anh nhớ em rất nhiều! ❤️</div>
-    <div class="falling-text" style="--delay: 9s;">Anh nhớ em rất nhiều! ❤️</div>
-    <div class="falling-text" style="--delay: 9.5s;">Anh nhớ em rất nhiều! ❤️</div>
-    <div class="falling-text" style="--delay: 16s;">Anh nhớ em rất nhiều! ❤️</div>
-    <div class="falling-text" style="--delay: 16.5s;">Anh nhớ em rất nhiều! ❤️</div>
-    <div class="falling-text" style="--delay: 17s;">Anh nhớ em rất nhiều! ❤️</div>
-    <div class="falling-text" style="--delay: 17.5s;">Anh nhớ em rất nhiều! ❤️</div>
-
     <div class="falling-text" style="--delay: 3s;">Chúc em một ngày lễ 20-10 đầy ý nghĩa và nhiều niềm vuii!!</div>
-    <div class="falling-text" style="--delay: 11s;">Chúc em một ngày lễ 20-10 đầy ý nghĩa và nhiều niềm vuii!!</div>
-    <div class="falling-text" style="--delay: 19s;">Chúc em một ngày lễ 20-10 đầy ý nghĩa và nhiều niềm vuii!!</div>
-
     <div class="falling-text" style="--delay: 5s;">Cảm ơn vì tất cả.</div>
-    <div class="falling-text" style="--delay: 13s;">Cảm ơn vì tất cả.</div>
-    <div class="falling-text" style="--delay: 21s;">Cảm ơn vì tất cả.</div>
+    <div class="falling-text" style="--delay: 12s;">Anh nhớ em rất nhiều! ❤️</div>
+    <div class="falling-text" style="--delay: 13s;">Anh nhớ em rất nhiều! ❤️</div>
+    <div class="falling-text" style="--delay: 15s;">Chúc em một ngày lễ 20-10 đầy ý nghĩa và nhiều niềm vuii!!</div>
+    <div class="falling-text" style="--delay: 17s;">Cảm ơn vì tất cả.</div>
+    <div class="falling-text" style="--delay: 24s;">Anh nhớ em rất nhiều! ❤️</div>
+    <div class="falling-text" style="--delay: 25s;">Anh nhớ em rất nhiều! ❤️</div>
+    <div class="falling-text" style="--delay: 27s;">Chúc em một ngày lễ 20-10 đầy ý nghĩa và nhiều niềm vuii!!</div>
+    <div class="falling-text" style="--delay: 29s;">Cảm ơn vì tất cả.</div>
+    <div class="falling-text" style="--delay: 36s;">Anh nhớ em rất nhiều! ❤️</div>
+    <div class="falling-text" style="--delay: 37s;">Anh nhớ em rất nhiều! ❤️</div>
+    <div class="falling-text" style="--delay: 39s;">Chúc em một ngày lễ 20-10 đầy ý nghĩa và nhiều niềm vuii!!</div>
+    <div class="falling-text" style="--delay: 41s;">Cảm ơn vì tất cả.</div>
   </div>
 
   <canvas id="pinkboard"></canvas>
 
-  <!-- 💞 Nút phát nhạc -->
   <button id="musicButton" 
           style="position: fixed; bottom: 30px; right: 30px; 
                  background: radial-gradient(circle, #ff7aa8, #ff4081);
@@ -131,8 +143,8 @@
   </button>
 
   <audio id="bgm" 
-         src="https://khuongnhii.github.io/thiepyeu/bgm.mp3"
-         preload="auto" loop playsinline></audio>
+          src="https://khuongnhii.github.io/thiepyeu/bgm.mp3"
+          preload="auto" loop playsinline></audio>
 
   <style>
   @keyframes glow {
@@ -169,32 +181,31 @@
   <script>
   function createFallingIcons() {
       const container = document.getElementById('falling-icons-container');
-      const icons = ['❤️', '🌸']; // Các icon muốn rơi
-      const numberOfIcons = 30; // Số lượng icon rơi cùng lúc
+      if (!container) return; // Bảo vệ: Thoát nếu container không tồn tại
+      
+      const icons = ['❤️', '🌸']; 
+      const numberOfIcons = 30; 
 
       for (let i = 0; i < numberOfIcons; i++) {
           const icon = document.createElement('div');
           icon.classList.add('falling-icon');
           icon.innerHTML = icons[Math.floor(Math.random() * icons.length)];
           
-          // Thiết lập vị trí và animation ngẫu nhiên
-          const startX = Math.random() * 100; // Vị trí X ngẫu nhiên (0% - 100%)
-          const delay = Math.random() * 15; // Delay ngẫu nhiên (0s - 15s)
-          const duration = 10 + Math.random() * 5; // Thời gian rơi ngẫu nhiên (10s - 15s)
+          const startX = Math.random() * 100; 
+          const delay = Math.random() * 15; 
+          const duration = 10 + Math.random() * 5; 
           
           icon.style.left = `${startX}vw`;
-          icon.style.animationDelay = `-${delay}s`; // Bắt đầu ở các giai đoạn khác nhau
+          icon.style.animationDelay = `-${delay}s`; 
           icon.style.animationDuration = `${duration}s`;
           
           container.appendChild(icon);
       }
   }
 
-  // Khởi tạo hiệu ứng rơi sau khi trang tải xong
   document.addEventListener('DOMContentLoaded', createFallingIcons);
   </script>
 
-  <!-- Toàn bộ phần hiệu ứng trái tim -->
   <script>
   var settings = {
       particles: {
@@ -317,32 +328,4 @@
       function renderHeart(dt, offsetX, offsetY) {
           var amount = particleRate * dt;
           for (var i = 0; i < amount; i++) {
-              var pos = pointOnHeart(Math.PI - 2 * Math.PI * Math.random());
-              var dir = pos.clone().length(settings.particles.velocity);
-              particles.add(canvas.width/2 + pos.x + offsetX, canvas.height/2 - pos.y + offsetY, dir.x, -dir.y);
-          }
-      }
-
-      function render() {
-          requestAnimationFrame(render);
-          var newTime = new Date().getTime()/1000, dt = newTime - (time || newTime);
-          time = newTime;
-          ctx.clearRect(0, 0, canvas.width, canvas.height);
-          var offset = 180;
-          renderHeart(dt, 0, -offset);
-          renderHeart(dt, -offset, offset/2);
-          renderHeart(dt, offset, offset/2);
-          particles.update(dt);
-          particles.draw(ctx, image);
-      }
-      function onResize() {
-          canvas.width = canvas.clientWidth;
-          canvas.height = canvas.clientHeight;
-      }
-      window.onresize = onResize;
-      setTimeout(function(){ onResize(); render(); }, 10);
-  })(document.getElementById('pinkboard'));
-  </script>
- </BODY>
-</HTML>
-
+              var pos = pointOnHeart
