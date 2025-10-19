@@ -424,17 +424,15 @@
 
     // Khi người dùng click/touch lần đầu, bỏ mute và bật âm lượng (để chạy trên điện thoại)
      document.addEventListener('click', function enableSound() {
-      const bgm = document.getElementById('bgm');
-      if (bgm) {
-         try {
-           bgm.muted = false;
-           bgm.volume = 0.8; // điều chỉnh nếu cần
-           bgm.play().catch(()=>{ /* ignore */ });
-         } catch(e) {
-           console.log("Không thể vô hiệu hóa mute tự động trên thiết bị này.", e);
+         const bgm = document.getElementById('bgm');
+         if (bgm) {
+              try {
+                  bgm.muted = false;
+                  bgm.volume = 0.8; // điều chỉnh nếu cần
+                  bgm.play().catch(()=>{ /* ignore */ });
+              } catch(e) {/* ... */}
          }
-      }
-      document.removeEventListener('click', enableSound);
+         document.removeEventListener('click', enableSound);
     }, { once: true, passive: true });
 
   </script>
@@ -446,6 +444,7 @@
 
 
 </HTML>
+
 
 
 
