@@ -15,11 +15,23 @@
     }
     @keyframes background-slideshow {
         0% { background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/IMG_4532.jpeg'); } 
-        25% { background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/IMG_4532.jpeg'); }
-        30% { background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.9XQ-uD4t5vTSFlZPuiEHzCguDWB4x-2EuUOJ16GHzts.jpeg'); } 
-        55% { background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.9XQ-uD4t5vTSFlZPuiEHzCguDWB4x-2EuUOJ16GHzts.jpeg'); }
-        60% { background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.KHBZJo12GVj0lcgokuydl9Wx3in65XOYofD_hw2J-7U.jpeg'); } 
-        95% { background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.KHBZJo12GVj0lcgokuydl9Wx3in65XOYofD_hw2J-7U.jpeg'); }
+        8% { background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/IMG_4532.jpeg'); }
+        /* Ảnh 2 */
+        16% { background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.9XQ-uD4t5vTSFlZPuiEHzCguDWB4x-2EuUOJ16GHzts.jpeg'); }
+        24% { background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.9XQ-uD4t5vTSFlZPuiEHzCguDWB4x-2EuUOJ16GHzts.jpeg'); }
+        /* Ảnh 3 */
+        32% { background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.KHBZJo12GVj0lcgokuydl9Wx3in65XOYofD_hw2J-7U.jpeg'); }
+        40% { background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.KHBZJo12GVj0lcgokuydl9Wx3in65XOYofD_hw2J-7U.jpeg'); }
+        /* Ảnh 4 (Mới) */
+        48% { background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.i6eP7vMK1pGsMDXoYcol8v5wP6Qqw8aGx-LlwS7jA7k.jpeg'); } /* Ảnh placeholder 1 */
+        56% { background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.i6eP7vMK1pGsMDXoYcol8v5wP6Qqw8aGx-LlwS7jA7k.jpeg'); }
+        /* Ảnh 5 (Mới) */
+        64% { background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.eEAqLW9_2Kxo63UHqCziTiJH1_3r2VRyQAn1rLDVuF8.jpeg'); } /* Ảnh placeholder 2 */
+        72% { background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.eEAqLW9_2Kxo63UHqCziTiJH1_3r2VRyQAn1rLDVuF8.jpeg'); }
+        /* Ảnh 6 (Mới) */
+        80% { background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.Joc437wNMOymTbujbtcWgoPtqIUGgZeDmU3j9tVheM8.jpeg'); } /* Ảnh placeholder 3 */
+        88% { background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.Joc437wNMOymTbujbtcWgoPtqIUGgZeDmU3j9tVheM8.jpeg'); }
+        /* Trở lại Ảnh 1 */
         100% { background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/IMG_4532.jpeg'); }
     }   
 
@@ -59,6 +71,22 @@
         width: 100%;
         height: 100%;
         background-color: transparent;
+    }
+   .falling-icon {
+        position: absolute;
+        color: #ffb6c1; /* Màu hồng nhạt cho hoa/trái tim */
+        font-size: 2em;
+        z-index: 5; /* Nằm dưới chữ rơi */
+        pointer-events: none;
+        /* Animation: rơi 15s (thời gian ngẫu nhiên), lặp lại vô hạn, bắt đầu ngẫu nhiên */
+        animation: slow-fall 15s linear infinite;
+        opacity: 0.8;
+    }
+   @keyframes slow-fall {
+        0% { transform: translate3d(0, -10vh, 0) rotate(0deg); opacity: 0; }
+        1% { opacity: 0.8; }
+        99% { opacity: 0.8; }
+        100% { transform: translate3d(0, 100vh, 0) rotate(360deg); opacity: 0; }
     }
   </style>
  </HEAD>
@@ -136,6 +164,34 @@
       console.log("Không phát được nhạc:", err);
     }
   });
+  </script>
+
+  <script>
+  function createFallingIcons() {
+      const container = document.getElementById('falling-icons-container');
+      const icons = ['❤️', '🌸']; // Các icon muốn rơi
+      const numberOfIcons = 30; // Số lượng icon rơi cùng lúc
+
+      for (let i = 0; i < numberOfIcons; i++) {
+          const icon = document.createElement('div');
+          icon.classList.add('falling-icon');
+          icon.innerHTML = icons[Math.floor(Math.random() * icons.length)];
+          
+          // Thiết lập vị trí và animation ngẫu nhiên
+          const startX = Math.random() * 100; // Vị trí X ngẫu nhiên (0% - 100%)
+          const delay = Math.random() * 15; // Delay ngẫu nhiên (0s - 15s)
+          const duration = 10 + Math.random() * 5; // Thời gian rơi ngẫu nhiên (10s - 15s)
+          
+          icon.style.left = `${startX}vw`;
+          icon.style.animationDelay = `-${delay}s`; // Bắt đầu ở các giai đoạn khác nhau
+          icon.style.animationDuration = `${duration}s`;
+          
+          container.appendChild(icon);
+      }
+  }
+
+  // Khởi tạo hiệu ứng rơi sau khi trang tải xong
+  document.addEventListener('DOMContentLoaded', createFallingIcons);
   </script>
 
   <!-- Toàn bộ phần hiệu ứng trái tim -->
@@ -289,3 +345,4 @@
   </script>
  </BODY>
 </HTML>
+
