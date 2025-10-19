@@ -8,7 +8,7 @@
         height: 100%;
         padding: 0;
         margin: 0;
-        background-color: #000; /* Vẫn giữ nền đen *
+        background-color: #000; /* Vẫn giữ nền đen */
         /* Cấu hình hiệu ứng slideshow ảnh */
         animation: background-slideshow 24s infinite;
         background-size: cover;
@@ -91,19 +91,17 @@
   </div>
   
 
-
-
   <canvas id="pinkboard"></canvas>
-  <div style="position: absolute; bottom: 0; left: 0; z-index: -1;">
-  <iframe
-    id="bgm"
-    width="0"
-    height="0"
-    src="https://www.youtube.com/embed/jPjQJYKhhk4?autoplay=1&loop=1&playlist=jPjQJYKhhk4&mute=1"
-    frameborder="0"
-    allow="autoplay"
-  ></iframe>
 
+  <!--
+    Thay iframe YouTube bằng thẻ audio để dùng mp3 (hỗ trợ điện thoại tốt hơn).
+    Lưu ý:
+    - Đặt file mp3 cùng thư mục và đổi src thành "bgm.mp3" hoặc cung cấp URL tới file mp3.
+    - Ban đầu audio bị muted để trình duyệt cho phép autoplay; khi người dùng chạm/click ta sẽ bật âm lượng.
+  -->
+  <div style="position: absolute; bottom: 0; left: 0; z-index: -1;">
+    <audio id="bgm" src="bgm.mp3" preload="auto" loop muted playsinline></audio>
+  </div>
 
     <script>
     /*
@@ -129,7 +127,9 @@
 
     */
 
-    (function(){var b=0;var c=["ms","moz","webkit","o"];for(var a=0;a<c.length&&!window.requestAnimationFrame;++a){window.requestAnimationFrame=window[c[a]+"RequestAnimationFrame"];window.cancelAnimationFrame=window[c[a]+"CancelAnimationFrame"]||window[c[a]+"CancelRequestAnimationFrame"]}if(!window.requestAnimationFrame){window.requestAnimationFrame=function(h,e){var d=new Date().getTime();var f=Math.max(0,16-(d-b));var g=window.setTimeout(function(){h(d+f)},f);b=d+f;return g}}if(!window.cancelAnimationFrame){window.cancelAnimationFrame=function(d){clearTimeout(d)}}}());
+    (function(){var b=0;var c=["ms","moz","webkit","o"];for(var a=0;a<c.length&&!window.requestAnimationFrame;++a){window.requestAnimationFrame=window[c[a]+"RequestAnimationFrame"];window.cancelAnimat[...]
+
+
 
 
 
@@ -363,6 +363,10 @@
 
 
 
+
+
+
+
     // render that thing!
     function render() {
         requestAnimationFrame(render);
@@ -407,24 +411,31 @@
     
         // BẮT ĐẦU PHÁT NHẠC
 
-        var audio = document.getElementById('background-music');
+        var audio = document.getElementById('bgm');
         if (audio) {
              // Cần tương tác người dùng để tự động phát trên nhiều trình duyệt. 
-             // Dòng này cố gắng tự động phát.
+             // Dòng này cố gắng tự động phát (audio được muted ban đầu để tăng khả năng autoplay).
              audio.play().catch(e => console.log("Tự động phát nhạc thất bại. Cần người dùng tương tác."));
         }
      
     }, 10);
 
 })(document.getElementById('pinkboard'));
+
+    // Khi người dùng click/touch lần đầu, bỏ mute và bật âm lượng (để chạy trên điện thoại)
      document.addEventListener('click', function enableSound() {
       const bgm = document.getElementById('bgm');
       if (bgm) {
-         const src = bgm.src.replace('&mute=1', '&mute=0');
-         bgm.src = src;
+         try {
+           bgm.muted = false;
+           bgm.volume = 0.8; // điều chỉnh nếu cần
+           bgm.play().catch(()=>{ /* ignore */ });
+         } catch(e) {
+           console.log("Không thể vô hiệu hóa mute tự động trên thiết bị này.", e);
+         }
       }
       document.removeEventListener('click', enableSound);
-    });
+    }, { once: true, passive: true });
 
   </script>
 
@@ -435,7 +446,3 @@
 
 
 </HTML>
-
-
-
-
