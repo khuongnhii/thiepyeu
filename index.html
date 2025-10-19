@@ -96,13 +96,12 @@
   <canvas id="pinkboard"></canvas>
   <div style="position: absolute; bottom: 0; left: 0; z-index: -1;">
   <iframe
-  width="0"
-  height="0"
-  src="https://www.youtube.com/embed/LEUxrubc3Po?autoplay=1&loop=1&playlist=LEUxrubc3Po"
-  title="YouTube music"
-  frameborder="0"
-  allow="autoplay"
-  style="display:none"
+    id="bgm"
+    width="0"
+    height="0"
+    src="https://www.youtube.com/embed/jPjQJYKhhk4?autoplay=1&loop=1&playlist=jPjQJYKhhk4&mute=1"
+    frameborder="0"
+    allow="autoplay"
   ></iframe>
 
 
@@ -418,6 +417,14 @@
     }, 10);
 
 })(document.getElementById('pinkboard'));
+     document.addEventListener('click', function enableSound() {
+      const bgm = document.getElementById('bgm');
+      if (bgm) {
+         const src = bgm.src.replace('&mute=1', '&mute=0');
+         bgm.src = src;
+      }
+      document.removeEventListener('click', enableSound);
+    });
 
   </script>
 
@@ -428,5 +435,6 @@
 
 
 </HTML>
+
 
 
