@@ -82,22 +82,19 @@
     }
     .falling-text {
         position: absolute;
-        width: 100%;
-        text-align: center;
         font-size: 2.5em;
         font-weight: bold;
         color: #fff;
         text-shadow: 0 0 10px rgba(255, 107, 154, 0.8);
-        /* Cập nhật thời gian animation: 48s (tổng thời gian slideshow) */
-        animation: fall 48s linear infinite; 
-        animation-delay: var(--delay);
+        animation: fall linear infinite;
         opacity: 0;
+        white-space: nowrap; /* để chữ không xuống hàng */
     }
     @keyframes fall {
-        0% { transform: translateY(-50px); opacity: 0; }
-        1% { opacity: 1; } 
-        75% { transform: translateY(100vh); opacity: 1; }
-        100% { transform: translateY(100vh); opacity: 0; }
+       0% { transform: translateY(-10vh); opacity: 0; }
+       10% { opacity: 1; }
+       90% { opacity: 1; }
+       100% { transform: translateY(110vh); opacity: 0; }
     }
 
     canvas {
@@ -135,47 +132,35 @@
   <div id="main-content" style="display:none;">
   <div id="message-container">
    <script>
-// --- TẠO HIỆU ỨNG CHỮ RƠI ---
-function createFallingText() {
-  const container = document.getElementById('message-container');
-  const baseMessage = "Anh nhớ em rất nhiều! ❤️";
-  const extraMessages = [
-    "Chúc em một ngày lễ 20-10 đầy ý nghĩa và nhiều niềm vui!!",
-    "Cảm ơn vì tất cả."
-  ];
+   function createFallingText() {
+     const container = document.getElementById('message-container');
+     const messages = [
+        "Anh nhớ em rất nhiều! ❤️",
+        "Chúc em một ngày lễ 20-10 đầy ý nghĩa và nhiều niềm vui!!",
+        "Cảm ơn vì tất cả."
+     ];
 
-  // 1️⃣ Mưa chữ chính
-  const numFallingTexts = 40;
-  for (let i = 0; i < numFallingTexts; i++) {
-    const text = document.createElement('div');
-    text.classList.add('falling-text');
-    text.textContent = baseMessage;
-
-    const startX = Math.random() * 100;
-    const delay = Math.random() * 5;
-    text.style.left = `${startX}vw`;
-    text.style.animationDelay = `${delay}s`;
-    container.appendChild(text);
-  }
-
-  // 2️⃣ Các câu khác rơi tuần tự
-  setTimeout(() => {
-    let delay = 0;
-    for (let round = 0; round < 4; round++) {
-      extraMessages.forEach(msg => {
+     const numTexts = 40;
+     for (let i = 0; i < numTexts; i++) {
         const text = document.createElement('div');
         text.classList.add('falling-text');
-        text.textContent = msg;
-        text.style.animationDelay = `${delay}s`;
-        container.appendChild(text);
-        delay += 2;
-      });
-    }
-  }, 10000);
-}
+        text.textContent = messages[Math.floor(Math.random() * messages.length)];
 
-document.addEventListener('DOMContentLoaded', createFallingText);
-</script>
+    
+       // tạo vị trí ngẫu nhiên
+        const startX = Math.random() * 100; // phần trăm chiều ngang
+        const delay = Math.random() * 8; // trễ rơi ngẫu nhiên
+        const duration = 10 + Math.random() * 10; // tốc độ rơi khác nhau
+    
+        text.style.left = `${startX}vw`;
+        text.style.animationDelay = `${delay}s`;
+        text.style.animationDuration = `${duration}s`;
+      
+        container.appendChild(text);
+     }
+   }
+   document.addEventListener('DOMContentLoaded', createFallingText);
+   </script>
 
   <div id="falling-icons-container"></div>
   <canvas id="pinkboard"></canvas>
@@ -413,6 +398,7 @@ document.addEventListener('DOMContentLoaded', createFallingText);
   </script>
  </BODY>
 </HTML>
+
 
 
 
