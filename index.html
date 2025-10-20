@@ -36,65 +36,70 @@
     }
     /* 1. HIỆU ỨNG SLIDESHOW ẢNH (ĐÃ THÊM 3 ẢNH MỚI) */
     html, body {
-        height: 100%;
-        padding: 0;
-        margin: 0;
-        background-color: #000;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background-color: #000;
+      animation: background-slideshow 48s infinite;
+      background-size: cover;
+      background-position: center;
+      /* ⚙️ mới thêm: tăng tốc phần cứng và ổn định hiệu ứng */
+      backface-visibility: hidden;
+      transform-style: preserve-3d;
+      will-change: background-image, opacity, transform;
+      -webkit-transform: translateZ(0);
+        /*height: 100%;*/
+       /*padding: 0;*/
+        /*margin: 0;*/
+        /*background-color: #000;*/
         /* Tổng thời gian tăng lên 48s để chứa 6 ảnh */
-        animation: background-slideshow 48s infinite;
-        background-size: cover; 
-        background-position: center;     
+        /*animation: background-slideshow 48s infinite;*/
+       /* background-size: cover; */
+        /*background-position: center; */    
     }
     @keyframes background-slideshow {
         0% {
-            background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/IMG_4532.jpeg');
-            background-size: cover; 
-            background-position: center;
-        } /* Ảnh 1 */
+          background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/IMG_4532.jpeg');
+        }
         16.66% {
-            background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.9XQ-uD4t5vTSFlZPuiEHzCguDWB4x-2EuUOJ16GHzts.jpeg'); 
-            background-size: cover; 
-            background-position: center;
-        } /* Ảnh 2: 48s / 6 ảnh = 8s/ảnh -> 8/48 = 16.66% */
-        33.33% { 
-            background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.KHBZJo12GVj0lcgokuydl9Wx3in65XOYofD_hw2J-7U.jpeg');
-            background-size: cover; 
-            background-position: center;
-        } /* Ảnh 3 */
-        50% { 
-            background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.eEAqLW9_2Kxo63UHqCziTiJH1_3r2VRyQAn1rLDVuF8.jpeg'); 
-            background-size: cover; 
-            background-position: center;
-        } /* Ảnh 4 */
+          background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.9XQ-uD4t5vTSFlZPuiEHzCguDWB4x-2EuUOJ16GHzts.jpeg');
+        }
+        33.33% {
+          background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.KHBZJo12GVj0lcgokuydl9Wx3in65XOYofD_hw2J-7U.jpeg');
+        }
+        50% {
+          background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.eEAqLW9_2Kxo63UHqCziTiJH1_3r2VRyQAn1rLDVuF8.jpeg');
+        }
         66.66% {
-            background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.i6eP7vMK1pGsMDXoYcol8v5wP6Qqw8aGx-LlwS7jA7k.jpeg'); 
-            background-size: cover; 
-            background-position: center;
-        } /* Ảnh 5 */
-        83.33% { 
-            background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.S7VU6UCOFrcZbSkgi_ahRUol7Qs5EqqYEggbhKCP1eg.jpeg');
-            background-size: cover; 
-            background-position: center;
-        } /* Ảnh 6 */
+          background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.i6eP7vMK1pGsMDXoYcol8v5wP6Qqw8aGx-LlwS7jA7k.jpeg');
+        }
+        83.33% {
+          background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.S7VU6UCOFrcZbSkgi_ahRUol7Qs5EqqYEggbhKCP1eg.jpeg');
+        }
         100% {
-            background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/IMG_4532.jpeg'); 
-            background-size: cover; 
-            background-position: center;
-        } /* Lặp lại về Ảnh 1 */
-    }    
+          background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/IMG_4532.jpeg');
+        }
+      }
 
     /* 2. HIỆU ỨNG CHỮ RƠI */
-    #message-container {
-        position: absolute;
-        top: 0; left: 0;
-        width: 100%; height: 100%;
-        z-index: 10;
-        pointer-events: none;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: center;
-    }
+    #message-contaighi,
+   .falling-text {
+     backface-visibility: hidden;       /* Ngăn lỗi render mặt sau */
+     transform-style: preserve-3d;      /* Giữ hiệu ứng ổn định */
+     will-change: transform, opacity;   /* Dự đoán hiệu ứng sắp xảy ra */
+     -webkit-transform: translateZ(0);  /* Kích hoạt GPU tăng tốc */
+   }
+     
+         /* position: absolute; */
+         /* top: 0; left: 0; */
+         /* width: 100%; height: 100%; */
+         /* z-index: 10; */
+         /* pointer-events: none; */
+         /* display: flex; */
+         /* lex-direction: column; */
+         /* justify-content: flex-start; */
+         /* align-items: center; */
+    
     .falling-text {
         position: absolute;
         font-size: 2.3em;
@@ -105,6 +110,8 @@
         opacity: 0;
         white-space: nowrap; 
         transform: rotateZ(0deg); /* --- ĐÃ THÊM: xoay nhẹ khi rơi --- */
+        transform-origin: center center;   /* Giữ tâm khi xoay */
+        perspective: 1000px;               /* Giúp hiệu ứng mượt */
         /* position: absolute;*/
         /* font-size: 2.5em;*/
         /* font-weight: bold;*/
@@ -472,6 +479,7 @@
   </script>
  </BODY>
 </HTML>
+
 
 
 
