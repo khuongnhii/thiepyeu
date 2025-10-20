@@ -83,6 +83,39 @@
        100% { transform: translateY(110vh); opacity: 0; }
     }
 
+    #musicButton {
+        /* 1. KÍCH THƯỚC LỚN HƠN */
+        width: 90px;   /* Tăng từ 70px lên 90px */
+        height: 90px;  /* Tăng từ 70px lên 90px */
+        font-size: 30px; /* Icon to hơn */
+    
+        /* VỊ TRÍ VÀ THIẾT KẾ CƠ BẢN (GIỮ NGUYÊN) */
+        position: fixed; 
+        bottom: 40px; /* Đẩy lên cao hơn một chút */
+        right: 40px;  /* Đẩy vào trong hơn một chút */
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        color: white; 
+        z-index: 999;
+        
+        /* MÀU SẮC VÀ ĐỔ BÓNG NỔI BẬT */
+        background: radial-gradient(circle, #ff99c8, #ff4081); /* Gradient rực rỡ hơn */
+        box-shadow: 0 0 30px rgba(255, 64, 129, 0.9); /* Đổ bóng mạnh hơn */
+    
+        /* ANIMATION (GIỮ NGUYÊN) */
+        animation: glow 2s ease-in-out infinite alternate;
+        transition: transform 0.3s ease; /* Thêm hiệu ứng chuyển đổi mượt mà */
+    }
+    @keyframes glow {
+        from { box-shadow: 0 0 15px rgba(255, 120, 160, 0.7), 0 0 5px rgba(255, 255, 255, 0.5); }
+        to { box-shadow: 0 0 40px rgba(255, 60, 120, 1), 0 0 10px rgba(255, 255, 255, 0.8); } /* Tăng độ sáng */
+    }
+    #musicButton:hover {
+        transform: scale(1.1); /* Phóng to 10% khi di chuột qua */
+        box-shadow: 0 0 50px rgba(255, 60, 120, 1.2), 0 0 20px #ffb6c1; /* Đổ bóng mạnh hơn nữa */
+    }
+
     canvas {
         position: absolute;
         width: 100%;
@@ -406,6 +439,7 @@
   </script>
  </BODY>
 </HTML>
+
 
 
 
