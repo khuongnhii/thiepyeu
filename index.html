@@ -65,18 +65,14 @@
          overflow: hidden; /* để không hiện chữ rơi ra ngoài khung */
     }
     .falling-text {
-        position: absolute;
-        font-size: 2.5em;
-        font-weight: bold; 
-        color: #fff;
-        text-shadow: 0 0 10px rgba(255, 107, 154, 0.8);
-        animation: fall linear infinite; 
-        opacity: 0;
-        white-space: nowrap; 
+       font-size: 2em;
+       animation: fall linear infinite;
+       opacity: 0;
+       white-space: nowrap;
        
     }
     @keyframes fall {
-       0% { transform: translateY(-10vh); opacity: 0; }
+        0% { transform: translateY(-10vh); opacity: 0; }
        10% { opacity: 1; }
        90% { opacity: 1; }
        100% { transform: translateY(110vh); opacity: 0; }
@@ -113,7 +109,7 @@
  </HEAD>
  <BODY>
   <div id="intro-screen">
-    <h1 id="intro-text">Chào em, người con gái đẹp nhất hôm nay 💖</h1>
+    <h1 id="intro-text">Chào em, người con gái đẹp nhất hôm nay 💖(vk iu dấu của anh!!)</h1>
   </div>
   <div id="main-content" style="display:none;">
    <div id="message-container">
@@ -168,7 +164,7 @@
 
      // Giai đoạn 3: "Cảm ơn vì tất cả."
      setTimeout(() => {
-       const text3 = "Cảm ơn vì tất cả.";
+       const text3 = "vk của anh là tuyệt vời nhất!!.";
        for (let i = 0; i < 15; i++) {
          const t = document.createElement('div');
          t.classList.add('falling-text');
@@ -405,6 +401,7 @@
   </script>
  </BODY>
 </HTML>
+
 
 
 
