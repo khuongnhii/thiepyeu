@@ -36,115 +36,81 @@
     }
     /* 1. HIỆU ỨNG SLIDESHOW ẢNH (ĐÃ THÊM 3 ẢNH MỚI) */
     html, body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-      background-color: #000;
-      animation: background-slideshow 48s infinite;
-      background-size: cover;
-      background-position: center;
-      /* ⚙️ mới thêm: tăng tốc phần cứng và ổn định hiệu ứng */
-      backface-visibility: hidden;
-      transform-style: preserve-3d;
-      will-change: background-image, opacity, transform;
-      -webkit-transform: translateZ(0);
-        /*height: 100%;*/
-       /*padding: 0;*/
-        /*margin: 0;*/
-        /*background-color: #000;*/
+        height: 100%;
+        padding: 0;
+        margin: 0;
+        background-color: #000;
         /* Tổng thời gian tăng lên 48s để chứa 6 ảnh */
-        /*animation: background-slideshow 48s infinite;*/
-       /* background-size: cover; */
-        /*background-position: center; */    
+        animation: background-slideshow 48s infinite;
+        background-size: cover; 
+        background-position: center;     
     }
     @keyframes background-slideshow {
         0% {
-          background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/IMG_4532.jpeg');
-        }
+            background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/IMG_4532.jpeg');
+            background-size: cover; 
+            background-position: center;
+        } /* Ảnh 1 */
         16.66% {
-          background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.9XQ-uD4t5vTSFlZPuiEHzCguDWB4x-2EuUOJ16GHzts.jpeg');
-        }
-        33.33% {
-          background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.KHBZJo12GVj0lcgokuydl9Wx3in65XOYofD_hw2J-7U.jpeg');
-        }
-        50% {
-          background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.eEAqLW9_2Kxo63UHqCziTiJH1_3r2VRyQAn1rLDVuF8.jpeg');
-        }
+            background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.9XQ-uD4t5vTSFlZPuiEHzCguDWB4x-2EuUOJ16GHzts.jpeg'); 
+            background-size: cover; 
+            background-position: center;
+        } /* Ảnh 2: 48s / 6 ảnh = 8s/ảnh -> 8/48 = 16.66% */
+        33.33% { 
+            background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.KHBZJo12GVj0lcgokuydl9Wx3in65XOYofD_hw2J-7U.jpeg');
+            background-size: cover; 
+            background-position: center;
+        } /* Ảnh 3 */
+        50% { 
+            background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.eEAqLW9_2Kxo63UHqCziTiJH1_3r2VRyQAn1rLDVuF8.jpeg'); 
+            background-size: cover; 
+            background-position: center;
+        } /* Ảnh 4 */
         66.66% {
-          background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.i6eP7vMK1pGsMDXoYcol8v5wP6Qqw8aGx-LlwS7jA7k.jpeg');
-        }
-        83.33% {
-          background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.S7VU6UCOFrcZbSkgi_ahRUol7Qs5EqqYEggbhKCP1eg.jpeg');
-        }
+            background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.i6eP7vMK1pGsMDXoYcol8v5wP6Qqw8aGx-LlwS7jA7k.jpeg'); 
+            background-size: cover; 
+            background-position: center;
+        } /* Ảnh 5 */
+        83.33% { 
+            background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.S7VU6UCOFrcZbSkgi_ahRUol7Qs5EqqYEggbhKCP1eg.jpeg');
+            background-size: cover; 
+            background-position: center;
+        } /* Ảnh 6 */
         100% {
-          background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/IMG_4532.jpeg');
-        }
-      }
+            background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/IMG_4532.jpeg'); 
+            background-size: cover; 
+            background-position: center;
+        } /* Lặp lại về Ảnh 1 */
+    }    
 
     /* 2. HIỆU ỨNG CHỮ RƠI */
-    #message-contaighi,
-   .falling-text {
-     backface-visibility: hidden;       /* Ngăn lỗi render mặt sau */
-     transform-style: preserve-3d;      /* Giữ hiệu ứng ổn định */
-     will-change: transform, opacity;   /* Dự đoán hiệu ứng sắp xảy ra */
-     -webkit-transform: translateZ(0);  /* Kích hoạt GPU tăng tốc */
-   }
-     
-         /* position: absolute; */
-         /* top: 0; left: 0; */
-         /* width: 100%; height: 100%; */
-         /* z-index: 10; */
-         /* pointer-events: none; */
-         /* display: flex; */
-         /* lex-direction: column; */
-         /* justify-content: flex-start; */
-         /* align-items: center; */
-    
+    #message-container {
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        z-index: 10;
+        pointer-events: none;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+    }
     .falling-text {
         position: absolute;
-        font-size: 2.3em;
+        font-size: 2.5em;
         font-weight: bold;
         color: #fff; 
-        text-shadow: 0 0 15px rgba(255, 107, 154, 0.8);
+        text-shadow: 0 0 10px rgba(255, 107, 154, 0.8);
         animation: fall linear infinite;
-        opacity: 0;
-        white-space: nowrap; 
-        transform: rotateZ(0deg); /* --- ĐÃ THÊM: xoay nhẹ khi rơi --- */
-        transform-origin: center center;   /* Giữ tâm khi xoay */
-        perspective: 1000px;               /* Giúp hiệu ứng mượt */
-        /* position: absolute;*/
-        /* font-size: 2.5em;*/
-        /* font-weight: bold;*/
-        /* color: #fff; */
-        /* text-shadow: 0 0 10px rgba(255, 107, 154, 0.8);*/
-        /* animation: fall linear infinite;*/
-        /* opacity: 0; white-space: nowrap; /* để chữ không xuống hàng */   
+        opacity: 0; white-space: nowrap; /* để chữ không xuống hàng */   
     }
     @keyframes fall {
-        0% { 
-          transform: translate3d(0, -10vh, 0) rotateZ(0deg);
-          opacity: 0; 
-      }
-      10% { opacity: 1; }
-      50% { 
-          transform: translate3d(5vw, 50vh, 0) rotateZ(15deg); /* --- bay chéo --- */
-          opacity: 1;
-      }
-      90% { opacity: 1; }
-      100% { 
-          transform: translate3d(-5vw, 110vh, 0) rotateZ(-15deg); /* --- xoay nhẹ --- */
-          opacity: 0;
-      }
-        /*0% { transform: translateY(-10vh); opacity: 0; }*/
-        /*10% { opacity: 1; }*/
-        /*90% { opacity: 1; }*/
-        /*100% { transform: translateY(110vh); opacity: 0; }*/
+        0% { transform: translateY(-10vh); opacity: 0; }
+       10% { opacity: 1; }
+       90% { opacity: 1; }
+       100% { transform: translateY(110vh); opacity: 0; }
     }
 
-    @keyframes wave {
-      0%, 100% { transform: translateX(0); }
-      50% { transform: translateX(10px); }
-    }
     #musicButton {
         /* 1. KÍCH THƯỚC LỚN HƠN */
         width: 90px;   /* Tăng từ 70px lên 90px */
@@ -212,7 +178,8 @@
     <h1 id="intro-text">Chào em,người con gái đẹp nhất hôm nay vk iu dấu của anh💖💖</h1>
   </div>
   <div id="main-content" style="display:none;">
-   <div id="message-container"></div>
+   <div id="message-container">
+         </div>
    <div id="falling-icons-container"></div>
    <canvas id="pinkboard"></canvas>
   </div>
@@ -230,33 +197,54 @@
    <script>
    function createFallingText() {
      const container = document.getElementById('message-container');
+     // Giai đoạn 1: "Anh nhớ em rất nhiều! ❤️"
+     const text1 = "Anh nhớ em rất nhiều! ❤️";
+     for (let i = 0; i < 40; i++) {
+       const t = document.createElement('div');
+       t.classList.add('falling-text');
+       t.textContent = text1;
+       const startX = Math.random() * 100;
+       const delay = Math.random() * 4;
+       const duration = 8 + Math.random() * 6;
+       t.style.left = `${startX}vw`;
+       t.style.animationDelay = `${delay}s`;
+       t.style.animationDuration = `${duration}s`;
+       container.appendChild(t);
+     }
+     // Giai đoạn 2: "Chúc em một ngày lễ 20-10 đầy ý nghĩa và nhiều niềm vui!!"
+     setTimeout(() => {
+       const text2 = "Chúc em một ngày lễ 20-10 đầy ý nghĩa và nhiều niềm vui!!";
+       for (let i = 0; i < 25; i++) {
+         const t = document.createElement('div');
+         t.classList.add('falling-text');
+         t.textContent = text2;
+         const startX = Math.random() * 100;
+         const delay = Math.random() * 4;
+         const duration = 8 + Math.random() * 6;
+         t.style.left = `${startX}vw`;
+         t.style.animationDelay = `${delay}s`;
+         t.style.animationDuration = `${duration}s`;
+         container.appendChild(t);
+       }
+     }, 5000); // Sau 7 giây giai đoạn 2 mới bắt đầu
 
-    const messages = [
-      {text: "Anh nhớ em rất nhiều! ❤️", count: 40, delayStart: 0},
-      {text: "Chúc em một ngày lễ 20-10 đầy ý nghĩa và nhiều niềm vui!!", count: 25, delayStart: 5000},
-      {text: "Vk của anh là tuyệt vời nhất!! 💖", count: 15, delayStart: 9000}
-    ];
-
-    messages.forEach((msg) => {
-      setTimeout(() => {
-        for (let i = 0; i < msg.count; i++) {
-          const t = document.createElement('div');
-          t.classList.add('falling-text');
-          t.textContent = msg.text;
-          const startX = Math.random() * 100;
-          const delay = Math.random() * 3;
-          const duration = 7 + Math.random() * 5;
-          const rotate = Math.random() * 20 - 10; /* --- ĐÃ THÊM: góc xoay ban đầu --- */
-
-          t.style.left = `${startX}vw`;
-          t.style.animationDelay = `${delay}s`;
-          t.style.animationDuration = `${duration}s`;
-          t.style.transform = `rotate(${rotate}deg)`;
-          container.appendChild(t);
-        }
-      }, msg.delayStart);
-    });
-  }
+     // Giai đoạn 3: "Cảm ơn vì tất cả."
+     setTimeout(() => {
+       const text3 = "vk của anh là tuyệt vời nhất!!.";
+       for (let i = 0; i < 15; i++) {
+         const t = document.createElement('div');
+         t.classList.add('falling-text');
+         t.textContent = text3;
+         const startX = Math.random() * 100;
+         const delay = Math.random() * 4;
+         const duration = 10 + Math.random() * 6;
+         t.style.left = `${startX}vw`;
+         t.style.animationDelay = `${delay}s`;
+         t.style.animationDuration = `${duration}s`;
+         container.appendChild(t);
+       }
+     }, 8000); // Sau 14 giây giai đoạn 3 mới bắt đầu
+   }
    document.addEventListener('DOMContentLoaded', createFallingText);
    </script>
 
@@ -479,9 +467,6 @@
   </script>
  </BODY>
 </HTML>
-
-
-
 
 
 
