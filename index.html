@@ -45,27 +45,21 @@
         background-position: center;
     }
     @keyframes background-slideshow {
-        /* Tổng cộng 6 ảnh, mỗi ảnh hiện 8s (25% của 48s là 12s, chia 6 ảnh = 8s/ảnh) */
-        /* Ảnh 1 */
-        0% { background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/IMG_4532.jpeg'); } 
-        8% { background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/IMG_4532.jpeg'); }
-        /* Ảnh 2 */
-        16% { background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.9XQ-uD4t5vTSFlZPuiEHzCguDWB4x-2EuUOJ16GHzts.jpeg'); }
-        24% { background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.9XQ-uD4t5vTSFlZPuiEHzCguDWB4x-2EuUOJ16GHzts.jpeg'); }
-        /* Ảnh 3 */
-        32% { background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.KHBZJo12GVj0lcgokuydl9Wx3in65XOYofD_hw2J-7U.jpeg'); }
-        40% { background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.KHBZJo12GVj0lcgokuydl9Wx3in65XOYofD_hw2J-7U.jpeg'); }
-        /* Ảnh 4 (Mới) */
-        48% { background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.eEAqLW9_2Kxo63UHqCziTiJH1_3r2VRyQAn1rLDVuF8.jpeg'); } /* Ảnh placeholder 1 */
-        56% { background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.eEAqLW9_2Kxo63UHqCziTiJH1_3r2VRyQAn1rLDVuF8.jpeg'); }
-        /* Ảnh 5 (Mới) */
-        64% { background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.i6eP7vMK1pGsMDXoYcol8v5wP6Qqw8aGx-LlwS7jA7k.jpeg'); } /* Ảnh placeholder 2 */
-        72% { background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.i6eP7vMK1pGsMDXoYcol8v5wP6Qqw8aGx-LlwS7jA7k.jpeg'); }
-        /* Ảnh 6 (Mới) */
-        80% { background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.S7VU6UCOFrcZbSkgi_ahRUol7Qs5EqqYEggbhKCP1eg.jpeg'); } /* Ảnh placeholder 3 */
-        88% { background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.S7VU6UCOFrcZbSkgi_ahRUol7Qs5EqqYEggbhKCP1eg.jpeg'); }
-        /* Trở lại Ảnh 1 */
-        100% { background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/IMG_4532.jpeg'); }
+        0%, 99.9% { background-image: url('...'); } /* Ảnh 1: Giữ từ 0% đến gần 100% */
+        8% { background-image: url('...'); } /* Ảnh 2: Bắt đầu từ 8% */
+        16% { background-image: url('...'); } /* Ảnh 3: Bắt đầu từ 16% */
+        24% { background-image: url('...'); } /* Ảnh 4 (Mới): Bắt đầu từ 24% */
+        32% { background-image: url('...'); } /* Ảnh 5 (Mới): Bắt đầu từ 32% */
+        40% { background-image: url('...'); } /* Ảnh 6 (Mới): Bắt đầu từ 40% */
+        /* ... tiếp tục với các mốc thời gian tăng 8% nếu muốn 6 ảnh hiển thị đều */
+        /* Nếu bạn muốn ảnh 1-3 hiển thị 8s và 4-6 hiển thị 8s nữa: */
+        0% { background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/IMG_4532.jpeg'); } /* Ảnh 1 */
+        16.66% { background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.9XQ-uD4t5vTSFlZPuiEHzCguDWB4x-2EuUOJ16GHzts.jpeg'); } /* Ảnh 2: 48s / 6 ảnh = 8s/ảnh -> 8/48 = 16.66% */
+        33.33% { background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.KHBZJo12GVj0lcgokuydl9Wx3in65XOYofD_hw2J-7U.jpeg'); } /* Ảnh 3 */
+        50% { background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.eEAqLW9_2Kxo63UHqCziTiJH1_3r2VRyQAn1rLDVuF8.jpeg'); } /* Ảnh 4 */
+        66.66% { background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.i6eP7vMK1pGsMDXoYcol8v5wP6Qqw8aGx-LlwS7jA7k.jpeg'); } /* Ảnh 5 */
+        83.33% { background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.S7VU6UCOFrcZbSkgi_ahRUol7Qs5EqqYEggbhKCP1eg.jpeg'); } /* Ảnh 6 */
+        100% { background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/IMG_4532.jpeg'); } /* Lặp lại về Ảnh 1 */
     }    
 
     /* 2. HIỆU ỨNG CHỮ RƠI */
@@ -75,7 +69,7 @@
          width: 100%; height: 100%;
          z-index: 10;
          pointer-events: none;
-         overflow: hidden; /* để không 
+         overflow: hidden; 
     }
     .falling-text {
         position: absolute;
@@ -85,7 +79,7 @@
         text-shadow: 0 0 10px rgba(255, 107, 154, 0.8);
         animation: fall linear infinite; 
         opacity: 0;
-        white-space: nowrap; /* để chữ không xuống hàng
+        white-space: nowrap; 
        
     }
     @keyframes fall {
@@ -419,6 +413,7 @@
   </script>
  </BODY>
 </HTML>
+
 
 
 
