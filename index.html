@@ -116,7 +116,22 @@
     <h1 id="intro-text">Chào em, người con gái đẹp nhất hôm nay 💖</h1>
   </div>
   <div id="main-content" style="display:none;">
-  <div id="message-container">
+   <div id="message-container">
+         </div>
+   <div id="falling-icons-container"></div>
+   <canvas id="pinkboard"></canvas>
+  </div>
+  
+    <button id="musicButton" 
+          style="position: fixed; bottom: 30px; right: 30px; 
+                 /* ... các style khác ... */
+                 z-index: 999;">
+      💞
+  </button>
+  
+  <audio id="bgm" 
+          src="https://khuongnhii.github.io/thiepyeu/bgm.mp3"
+          preload="auto" loop playsinline></audio>
    <script>
    function createFallingText() {
      const container = document.getElementById('message-container');
@@ -173,23 +188,6 @@
 
   <div id="falling-icons-container"></div>
   <canvas id="pinkboard"></canvas>
-
-  <button id="musicButton" 
-          style="position: fixed; bottom: 30px; right: 30px; 
-                 background: radial-gradient(circle, #ff7aa8, #ff4081);
-                 border: none; border-radius: 50%;
-                 width: 70px; height: 70px;
-                 box-shadow: 0 0 20px rgba(255,100,150,0.7);
-                 cursor: pointer;
-                 color: white; font-size: 20px;
-                 animation: glow 2s ease-in-out infinite alternate;
-                 z-index: 999;">
-      💞
-  </button>
-
-  <audio id="bgm" 
-          src="https://khuongnhii.github.io/thiepyeu/bgm.mp3"
-          preload="auto" loop playsinline></audio>
 
   <style>
   @keyframes glow {
@@ -407,6 +405,7 @@
   </script>
  </BODY>
 </HTML>
+
 
 
 
