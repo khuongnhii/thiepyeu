@@ -134,19 +134,48 @@
   </div>
   <div id="main-content" style="display:none;">
   <div id="message-container">
-    <div class="falling-text" style="--delay: 0s;">Anh nhớ em rất nhiều! ❤️</div>
-    <div class="falling-text" style="--delay: 1s;">Chúc em một ngày lễ 20-10 đầy ý nghĩa và nhiều niềm vuii!!</div>
-    <div class="falling-text" style="--delay: 2s;">Cảm ơn vì tất cả.</div>
-    <div class="falling-text" style="--delay: 12s;">Anh nhớ em rất nhiều! ❤️</div>
-    <div class="falling-text" style="--delay: 13s;">Chúc em một ngày lễ 20-10 đầy ý nghĩa và nhiều niềm vuii!!</div>
-    <div class="falling-text" style="--delay: 14s;">Cảm ơn vì tất cả.</div>
-    <div class="falling-text" style="--delay: 24s;">Anh nhớ em rất nhiều! ❤️</div>
-    <div class="falling-text" style="--delay: 25s;">Chúc em một ngày lễ 20-10 đầy ý nghĩa và nhiều niềm vuii!!</div>
-    <div class="falling-text" style="--delay: 26s;">Cảm ơn vì tất cả.</div>
-    <div class="falling-text" style="--delay: 36s;">Anh nhớ em rất nhiều! ❤️</div>
-    <div class="falling-text" style="--delay: 37s;">Chúc em một ngày lễ 20-10 đầy ý nghĩa và nhiều niềm vuii!!</div>
-    <div class="falling-text" style="--delay: 38s;">Cảm ơn vì tất cả.</div>
-  </div>
+   <script>
+// --- TẠO HIỆU ỨNG CHỮ RƠI ---
+function createFallingText() {
+  const container = document.getElementById('message-container');
+  const baseMessage = "Anh nhớ em rất nhiều! ❤️";
+  const extraMessages = [
+    "Chúc em một ngày lễ 20-10 đầy ý nghĩa và nhiều niềm vui!!",
+    "Cảm ơn vì tất cả."
+  ];
+
+  // 1️⃣ Mưa chữ chính
+  const numFallingTexts = 40;
+  for (let i = 0; i < numFallingTexts; i++) {
+    const text = document.createElement('div');
+    text.classList.add('falling-text');
+    text.textContent = baseMessage;
+
+    const startX = Math.random() * 100;
+    const delay = Math.random() * 5;
+    text.style.left = `${startX}vw`;
+    text.style.animationDelay = `${delay}s`;
+    container.appendChild(text);
+  }
+
+  // 2️⃣ Các câu khác rơi tuần tự
+  setTimeout(() => {
+    let delay = 0;
+    for (let round = 0; round < 4; round++) {
+      extraMessages.forEach(msg => {
+        const text = document.createElement('div');
+        text.classList.add('falling-text');
+        text.textContent = msg;
+        text.style.animationDelay = `${delay}s`;
+        container.appendChild(text);
+        delay += 2;
+      });
+    }
+  }, 10000);
+}
+
+document.addEventListener('DOMContentLoaded', createFallingText);
+</script>
 
   <div id="falling-icons-container"></div>
   <canvas id="pinkboard"></canvas>
@@ -384,6 +413,7 @@
   </script>
  </BODY>
 </HTML>
+
 
 
 
