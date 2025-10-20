@@ -134,30 +134,53 @@
    <script>
    function createFallingText() {
      const container = document.getElementById('message-container');
-     const messages = [
-        "Anh nhớ em rất nhiều! ❤️",
-        "Chúc em một ngày lễ 20-10 đầy ý nghĩa và nhiều niềm vui!!",
-        "Cảm ơn vì tất cả."
-     ];
-
-     const numTexts = 40;
-     for (let i = 0; i < numTexts; i++) {
-        const text = document.createElement('div');
-        text.classList.add('falling-text');
-        text.textContent = messages[Math.floor(Math.random() * messages.length)];
-
-    
-       // tạo vị trí ngẫu nhiên
-        const startX = Math.random() * 100; // phần trăm chiều ngang
-        const delay = Math.random() * 8; // trễ rơi ngẫu nhiên
-        const duration = 10 + Math.random() * 10; // tốc độ rơi khác nhau
-    
-        text.style.left = `${startX}vw`;
-        text.style.animationDelay = `${delay}s`;
-        text.style.animationDuration = `${duration}s`;
-      
-        container.appendChild(text);
+     // Giai đoạn 1: "Anh nhớ em rất nhiều! ❤️"
+     const text1 = "Anh nhớ em rất nhiều! ❤️";
+     for (let i = 0; i < 40; i++) {
+       const t = document.createElement('div');
+       t.classList.add('falling-text');
+       t.textContent = text1;
+       const startX = Math.random() * 100;
+       const delay = Math.random() * 4;
+       const duration = 8 + Math.random() * 6;
+       t.style.left = `${startX}vw`;
+       t.style.animationDelay = `${delay}s`;
+       t.style.animationDuration = `${duration}s`;
+       container.appendChild(t);
      }
+     // Giai đoạn 2: "Chúc em một ngày lễ 20-10 đầy ý nghĩa và nhiều niềm vui!!"
+     setTimeout(() => {
+       const text2 = "Chúc em một ngày lễ 20-10 đầy ý nghĩa và nhiều niềm vui!!";
+       for (let i = 0; i < 25; i++) {
+         const t = document.createElement('div');
+         t.classList.add('falling-text');
+         t.textContent = text2;
+         const startX = Math.random() * 100;
+         const delay = Math.random() * 4;
+         const duration = 8 + Math.random() * 6;
+         t.style.left = `${startX}vw`;
+         t.style.animationDelay = `${delay}s`;
+         t.style.animationDuration = `${duration}s`;
+         container.appendChild(t);
+       }
+     }, 7000); // Sau 7 giây giai đoạn 2 mới bắt đầu
+
+     // Giai đoạn 3: "Cảm ơn vì tất cả."
+     setTimeout(() => {
+       const text3 = "Cảm ơn vì tất cả.";
+       for (let i = 0; i < 15; i++) {
+         const t = document.createElement('div');
+         t.classList.add('falling-text');
+         t.textContent = text3;
+         const startX = Math.random() * 100;
+         const delay = Math.random() * 4;
+         const duration = 10 + Math.random() * 6;
+         t.style.left = `${startX}vw`;
+         t.style.animationDelay = `${delay}s`;
+         t.style.animationDuration = `${duration}s`;
+         container.appendChild(t);
+       }
+     }, 14000); // Sau 14 giây giai đoạn 3 mới bắt đầu
    }
    document.addEventListener('DOMContentLoaded', createFallingText);
    </script>
@@ -398,6 +421,7 @@
   </script>
  </BODY>
 </HTML>
+
 
 
 
