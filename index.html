@@ -42,7 +42,8 @@
         background-color: #000;
         /* Tổng thời gian tăng lên 48s để chứa 6 ảnh */
         animation: background-slideshow 48s infinite;
-        background-size: cover;
+        /* background-size: cover; */
+        background-size: contain;
         background-position: center;
         background-repeat: no-repeat;
 
@@ -50,37 +51,37 @@
     @keyframes background-slideshow {
         0% {
             background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/IMG_4532.jpeg');
-            background-size: cover; 
+            background-size: contain;
             background-position: center;
         } /* Ảnh 1 */
         16.66% {
             background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.9XQ-uD4t5vTSFlZPuiEHzCguDWB4x-2EuUOJ16GHzts.jpeg'); 
-            background-size: cover; 
+            background-size: contain;
             background-position: center;
         } /* Ảnh 2: 48s / 6 ảnh = 8s/ảnh -> 8/48 = 16.66% */
         33.33% { 
             background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.KHBZJo12GVj0lcgokuydl9Wx3in65XOYofD_hw2J-7U.jpeg');
-            background-size: cover; 
+            background-size: contain;
             background-position: center;
         } /* Ảnh 3 */
         50% { 
             background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.eEAqLW9_2Kxo63UHqCziTiJH1_3r2VRyQAn1rLDVuF8.jpeg'); 
-            background-size: cover; 
+           background-size: contain;
             background-position: center;
         } /* Ảnh 4 */
         66.66% {
             background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.i6eP7vMK1pGsMDXoYcol8v5wP6Qqw8aGx-LlwS7jA7k.jpeg'); 
-            background-size: cover; 
+           background-size: contain;
             background-position: center;
         } /* Ảnh 5 */
         83.33% { 
             background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.S7VU6UCOFrcZbSkgi_ahRUol7Qs5EqqYEggbhKCP1eg.jpeg');
-            background-size: cover; 
+           background-size: contain;
             background-position: center;
         } /* Ảnh 6 */
         100% {
             background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/IMG_4532.jpeg'); 
-            background-size: cover; 
+            background-size: contain;
             background-position: center;
         } /* Lặp lại về Ảnh 1 */
     }    
@@ -469,6 +470,7 @@
   </script>
  </BODY>
 </HTML>
+
 
 
 
