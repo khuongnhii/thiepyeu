@@ -45,7 +45,29 @@
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
+
     }
+    @keyframes background-slideshow {
+        /* 🛠️ Cập nhật: Thêm background-size và background-position cho mỗi bước */
+        0% { 
+            background-image: url('...'); 
+            background-size: cover; 
+            background-position: center;
+        }
+        16.66% { 
+            background-image: url('...'); 
+            background-size: cover; 
+            background-position: center;
+        }
+        /* ... tiếp tục cho tất cả các bước ... */
+        100% { 
+            background-image: url('...'); 
+            background-size: cover; 
+            background-position: center;
+        }
+   }
+
+    
     @keyframes background-slideshow {
         0% { background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/IMG_4532.jpeg'); } /* Ảnh 1 */
         16.66% { background-image: url('https://raw.githubusercontent.com/khuongnhii/my-hosted-images/main/att.9XQ-uD4t5vTSFlZPuiEHzCguDWB4x-2EuUOJ16GHzts.jpeg'); } /* Ảnh 2: 48s / 6 ảnh = 8s/ảnh -> 8/48 = 16.66% */
@@ -440,6 +462,7 @@
   </script>
  </BODY>
 </HTML>
+
 
 
 
